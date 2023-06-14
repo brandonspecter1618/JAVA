@@ -1,0 +1,15 @@
+Add TomCat no Apache NetBeans IDE 15
+
+1 = No canto superior esquerdo, clique em Services
+
+2 = Em seguida, em Servers, clique com o botão direito do mouse
+e add um novo server, depois escolha tomcat depois next,  e depois 
+em server location, vá até a pasta do tomcat em application software(x86)
+depois selecione a pasta Tomcat 8.5.
+
+3 = Entre com o username and password que tinha colocado, depois clique em
+finish.
+
+username: brandon
+password: 22091992
+

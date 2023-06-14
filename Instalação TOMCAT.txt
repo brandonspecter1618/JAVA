@@ -1,0 +1,23 @@
+Instalação
+1 = Execute o tomcat, depois next, next...
+
+2 = Defina username e um password
+
+username: brandon
+password: ******* (22091992)
+
+3 = Execute o comando netstat -aon | find "8080" no cmd para verificar se tem
+algum outro software usando esta porta, ou a porta que definiu na hora
+da instalação, se tiver, pegue o PID. 
+
+Proto  Endereço local         Endereço externo       Estado           PID
+TCP    0.0.0.0:135            0.0.0.0:0              LISTENING   --> 1116   <--
+TCP    0.0.0.0:445            0.0.0.0:0              LISTENING   -->  4  <--
+TCP    0.0.0.0:623            0.0.0.0:0              LISTENING       4052
+
+4 = Inicie o gerenciador de tarefas, vá na aba detalhes, e procure pelo PID
+correspondente, em seguida verifique se poderá parar esse serviço.
+
+5 = Caso queira fazer um start ou stop na aplicação tomcat, execute um W + R
+escreva, "services.msc" e procure por Apache Tomcat 8.5 Tomcat8 ou
+a versão correspondente na numeração 8.5 para 9.0 por exemplo.
