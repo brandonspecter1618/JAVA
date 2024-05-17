@@ -1,0 +1,85 @@
+Criando um Container
+
+1 = Execute docker pull postgres
+
+2 = docker run -d --name postgresCont -p 5432:5432 -e POSTGRES_PASSWORD=22091992 postgres
+
+Obs: --name - Nome do Container, pode ser qualquer nome inclusive o que está no momento
+seria o 'postgresCont'.
+
+
+3 = docker exec -it postgresCont bash
+
+Obs: Caso precisa saber qual o nome do DB é só utilizar o comando 'docker ps -a'
+
+
+
+ps - Mostra os containers criados e ativos.
+
+-a - MOstra todos os containers inclusive os inativos
+
+4 = psql -h 127.0.0.1 -U postgres
+
+
+Obs: O ip 172.17.0.1/16 precisa permanecer com esse IP para funcionar. Caso contrário, nada funciona.
+
+===========================================================================================
+
+Criando um DB
+
+1 = Acesse o container com o comando docker exec -it [Name Container] bash
+
+2 = psql -h 127.0.0.1 -U postgres
+
+3 = \l - Verifica a lista de DB's existentes
+
+4 = Criando um DB = CREATE DATABASE db_aula;
+
+5 = \c db_aula
+
+\c = Comando utilizado 'connect' ao DB.
+
+You are now connected to database "db_aula" as user "postgres".
+
+5 = Agora vamos criar uma tabela: 
+
+db_aula=# CREATE TABLE aluno (id SERIAL PRIMARY KEY, login VARCHAR(50) NOT NULL, password VARCHAR(50) NOT NULL);
+CREATE TABLE
+
+6 = Inserindo dados
+
+db_aula=# INSERT INTO aluno(login, password) VALUES ('brandonspecter1618@gmail.com', 22091992);
+INSERT 0 1
+
+7 = Verificando dados na tabela
+
+db_aula=# select * from aluno;
+ id |            login             | password 
+----+------------------------------+----------
+  1 | brandonspecter1618@gmail.com | 22091992
+(1 row)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

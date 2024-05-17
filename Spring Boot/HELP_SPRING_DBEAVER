@@ -1,0 +1,44 @@
+Instalação e Configuração do DBEAVER
+
+//Instalação
+
+1 = O site pra baixar https://dbeaver.io/download/, depois vá em Linux e baixe o dbeaver-ce_24.0.4_amd64.deb.
+
+2 = Instale com apt install dbeaver-ce_24.0.4_amd64.deb
+
+3 = Se for necessário criar um banco de dados do zero, por favor utilize o docker, todos os
+comandos do mesmo estão localizados na pasta Docker. 
+
+=============================================================================================================
+
+//Configuração
+
+1 = Clique com o botão direito do mouse em Connection ou clique
+em uma tomada com o simbolo de + acima com o nome Nova Conexão.
+
+2 = EScolhe PostgreSQL, avance, verifique o campo de "Banco De Dados" 
+se estiver com o nome 'postgres', troque para o banco de dados que precise
+conectar no meu caso seria 'db_aula', em seguida coloque o usuário e depois a senha
+cadastrada 
+
+login: postgres
+password: 22091992
+
+Em seguida clique em Testar Conexão, se funcionar, vai apresentar 
+uma mensagem "Conectado".
+
+3 = Na opção de Schemas, clique com o botão direito do mouse, e depois
+'Criar novo Schemas', coloque o nome que quiser, no caso o meu seria 'aluno' 
+e depois OK. Em seguida, botão direito e depois criar, neste crie uma tabela 
+ou clique na parte de cima onde está escrito SQL para criar na mão a tabela. 
+
+CREATE TABLE tk_aluno (id SERIAL PRIMARY KEY, login VARCHAR(50) NOT NULL, password VARCHAR(50) NOT NULL);
+
+insert into tk_aluno (login, "password") values('brandon1618@gmail.com', 22091992);
+
+select * from tk_aluno;
+
+4 = Botão direito sobre o Schema que quer, e depois definir como padrão. 
+
+
+

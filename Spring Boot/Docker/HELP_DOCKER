@@ -1,0 +1,130 @@
+Obs: O IP do docker é o 172.17.0.1, neste caso, o docker não vai funcionar
+com suportedti.agu.gov.br, pois o ip é diferente, neste caso, é importante
+notar que o endereço IP não pode ser alterado, pois no momento que alterar
+através do comando 'nm-connection-editor' nada no docker irá funcionar. 
+
+Caso ainda seja necessário mudar o IP para entrar no suportedti.agu.gov.br,
+favor proceder da maneira abaixo
+
+nm-connection-editor
+
+E editar o ip estático para 10.60.4.63/22 e DNS 10.207.112.14
+
+e outro fator importante, provavelmente todos os containers serão desativados,
+neste caso terão que ser ativados novamente. Portanto pra saber se estão
+desativados use o comando
+
+docker ps -a
+
+e para ativar o container que quer
+
+docker start IdContainer
+
+docker start 44fc102c4a5e
+
+Obs: Caso não funcione, favor eliminar a interface docker, depois desativar 
+o serviço docker
+
+systemctl stop docker
+systemctl stop docker.socket
+systemctl start docker
+
+E em seguida volte a alterar o IP e veja o resultado no shell através do comando
+ip add
+
+
+======================================================================================
+Docker Desconectado e sem conexão com o DB
+
+Para resolver o problema do docker desativado, ou sem conexão com o banco de dados faça
+o seguinte:
+
+1 = Pare todos os serviços
+
+systemctl stop docker
+systemctl stop docker.socket
+
+2 = nm-connection-editor execute no shell este comando 
+
+3 = Elimine a interface docker0
+
+4 = Reinicie o serviço do docker
+
+5 = ip add
+
+3: docker0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue state DOWN group default 
+    link/ether 02:42:46:2e:e0:ed brd ff:ff:ff:ff:ff:ff
+    inet 172.17.0.1/16 brd 172.17.255.255 scope global docker0
+       valid_lft forever preferred_lft forever
+       
+6 = Inicialize o container referente 
+
++-[root]@[debian]:/home/brandon
++--> # docker ps -a
+CONTAINER ID   IMAGE      COMMAND                  CREATED       STATUS                     PORTS     NAMES
+6ba952fbb76d   postgres   "docker-entrypoint.s…"   4 hours ago   Exited (0) 2 minutes ago             DB_PHP_POSTGRES
++-[root]@[debian]:/home/brandon
++--> # docker start 6ba952fbb76d
+6ba952fbb76d
+
+
+
+=======================================================================================
+
+1 = Serviço Docker active and disable
+
+systemctl status docker //Status da conexão
+systemctl stop docker  // Parar o Docker
+systemctl start docker //Inicia o Docker
+systemctl stop docker.socket //Mata a interface docker.socket
+
+2 = Verificar quais imagens existem e como apagar. 
+
+docker images  // Verifica as imagens existentes
+
+docker rmi mysql  // Apaga a imagem específica
+
+
+3 = Teste para verificar se o docker está funcionando
+
+docker run hello-world //Inicia um docker Hello só pra verificar se o sistema funciona
+
+docker --version  //Verifica a versão do docker
+
+4 = Baixar uma imagem docker hub(Hub é o repositório do Docker)
+ 
+docker pull [mysql, postgres etc...] // comando para baixar alguma imagem
+
+docker pull mysql
+
+
+5 = Desativar a ponte docker pois se não o suportedti@agu.gov.br não vai funcionar
+
+nm-connection-editor //Eliminar a ponte ou editar o endereço ipv4 
+
+
+6 = Verificar quantos containers existem e parar seu funcionamento e também start
+
+docker ps -a //Mostra todos os containers inclusive os inativos
+
+docker stop idContainer
+
+docker stop 44fc102c4a5e
+
+docker start 44fc102c4a5e
+
+4 = 
++-[root]@[debian]:/home/brandon
++--> # docker pull mysql
+
+
+5 = Correr o Docker-Desktop no modo usuário deste maneira
+
++-[brandon]@[debian]:~
++--> $ systemctl --user enable docker-desktop
+
++-[brandon]@[debian]:~
++--> $ systemctl --user start docker-desktop
+
+
+
