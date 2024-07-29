@@ -1,0 +1,253 @@
+1 = Vá no site do postgresql jdbc e baixe o drive para importar para o projeto https://jdbc.postgresql.org/download/
+
+2 = Copie também o código XML para dicionar ao MAVEN, o gerenciador de dependencias
+
+Maven
+    <dependencies>
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>42.7.3</version>
+        </dependency>
+    </dependencies>
+
+Obs*: Os Maven está disponível no arquivo pom.xml, importante não esquecer de carregar as configurações no projeto
+clicando com o botao direito do mouse no projeto e vá em Clean e depois Builder e também Build dependencies
+
+Obs**: É importante colocar o XML <dependencies></dependencies>, caso o contrário o mesmo vai dá erro. Na dúvida, vá
+no canto esquerdo da tela, clique com o botao direito do mouse no projeto e vá em Clean e depois Builder e também Build dependencies. 
+Se houver um erro, pode ser que a opção <dependencies> não esteja no arquivo. 
+
+Princialpamente se esse erro aparecer "Erro SQLjava.lang.ClassNotFoundException: org.postgresql.Driver", porém é importante
+antes descartar se não é um problema de configuração do IDE para o drive do DB e se código está correto. 
+
+3 = Vá ao Netbeans e siga Tools > Libraries > Sources > Add JAR/Folder... > postgresql-42.7.3.jar
+
+4 = Código pra fazer a conexão ao banco:
+
+###################################################################################################
+
+package br.org.authenticationdb.packet1;
+import br.org.authenticationdb.conn.ConnectionDB;
+
+
+/**
+ *
+ * @author brandon
+ */
+public class Main {
+    public static void main(String[] args) {
+        ConnectionDB objConnDB = new ConnectionDB();
+        objConnDB.connectionDB();
+    }
+}
+
+
+************************************************
+
+package br.org.authenticationdb.conn;
+import javax.swing.JOptionPane;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
+
+/**
+ *
+ * @author brandon
+ */
+public class ConnectionDB {
+        public void connectionDB() {
+        String url = "jdbc:postgresql://127.0.0.1:5432/db_aula";
+        String username = "postgres";
+        String password = "22091992";
+
+        try(Connection conn = DriverManager.getConnection(url, username, password)) {
+            Class.forName("org.postgresql.Driver");
+            if(conn != null){
+                JOptionPane.showMessageDialog(null, "Connection Sucessfully");
+                System.out.println("Connection Sucessfully");
+            }else{
+                System.out.println("Connection Refused");
+            }
+        }catch (SQLException | ClassNotFoundException e) {
+            System.out.println("Erro SQL" + e);
+        }
+    } 
+}
+###################################################################################################
+
+5 = Links úteis
+
+https://www.postgresql.org/docs/7.4/jdbc-use.html
+
+https://jdbc.postgresql.org/download/
+
+
+##################################################################################################
+6 = Código completo para Select, Insert and Delete
+
+package br.org.authenticationdb.packet1;
+import br.org.authenticationdb.conn.ConnectionDB;
+
+
+/**
+ *
+ * @author brandon
+ */
+public class Main {
+    public static void main(String[] args) {
+        ConnectionDB objConnDB = new ConnectionDB();
+        objConnDB.connectionDB();
+    }
+}
+
+****************************************
+
+package br.org.authenticationDB;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.PreparedStatement;
+import java.sql.Statement;
+import java.sql.ResultSet;
+import java.util.Scanner;
+import javax.swing.JOptionPane;
+
+public class ConnectionDB {
+    public void connectionDB() {
+        String url, username, password, querySelect, queryInsert, queryExclude, queryCurrentDB, currentDatabase = "";
+        int select, insert, delete, option;
+
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+
+        url = "jdbc:postgresql://127.0.0.1:5432/db_aula";
+        username = "postgres";
+        password = "22091992";
+
+        querySelect = "select id, login, password from aluno";
+        queryInsert = "insert into aluno(login, password) values(?, ?)";
+        queryExclude = "delete from aluno WHERE id = ?";
+        queryCurrentDB = "select current_database()";
+
+        select = 0;
+        insert = 1;
+        delete = 2;
+
+        try(Scanner scan = new Scanner(System.in)){
+            System.out.println("Por favor selecione uma opçao: " + "\n" + "0 = Select" + "\n" + "1 = Insert " + "\n" + "2 = Delete");
+            System.out.println("Opçoes: ");
+            option = scan.nextInt();
+
+            try(Connection conn = DriverManager.getConnection(url, username, password)){
+                Class.forName("org.postgresql.Driver");
+                //conn = DriverManager.getConnection(url, username, password);
+
+                if(conn != null){
+                    JOptionPane.showMessageDialog(null, "Connection Sucessfully");
+                    System.out.println("Connection Sucessfully");
+                }else{
+                    System.out.println("Connection Refused");
+                }
+
+                //Buscando o nome do banco de dados com Statement
+
+                Statement stmt = conn.createStatement();
+                rs = stmt.executeQuery(queryCurrentDB);
+                if(rs.next()){
+                    currentDatabase = rs.getString(1);
+                    //System.out.println("O nome do banco e " + currentDatabase);
+                }
+
+                //Buscando o nome do banco de dados com PreparedStatement
+                /*
+                pstmt = conn.prepareStatement(queryCurrentDB);
+                rs = pstmt.executeQuery();
+                if (rs.next()) {
+                    currentDatabase = rs.getString(1);
+                    System.out.println("O nome do banco é: " + currentDatabase);
+                }
+                */
+
+                if(option == insert) {
+                    System.out.println("Login: ");
+                    String login = scan.next();
+
+                    System.out.println("Password: ");
+                    String pass = scan.next();
+
+                    pstmt = conn.prepareStatement(queryInsert);
+                    pstmt.setString(1, login);
+                    pstmt.setString(2, pass);
+                    int x = pstmt.executeUpdate();
+                        if(x == 1){
+                            System.out.println("Dados gravados no banco");  //Para fins didaticos
+                        }else{
+                            System.out.println("Dados nao gravados no banco");
+                        }
+                }
+
+                if(option == delete){
+                    System.out.println("ID: ");
+                    int id = scan.nextInt();
+                    pstmt = conn.prepareStatement(queryExclude);
+                    pstmt.setInt(1, id);
+                    int x = pstmt.executeUpdate();
+                        if(x == 1){
+                            System.out.println("Dado excluido" + x);  //Para fins didaticos
+                        }else{
+                            System.out.println("Dado nao excluido" + x);
+                        }
+
+                }
+
+                if(option == select){
+                    pstmt = conn.prepareStatement(querySelect);
+                    rs = pstmt.executeQuery();
+                    System.out.println("Banco De Dados: " + currentDatabase);
+
+                    while(rs.next()) {
+                        System.out.println("ID: " + rs.getInt(1) + "\n" + "LOGIN: " + rs.getString(2) + "\n" +  "PASSWORD: " + rs.getString(3));
+                        System.out.println();
+                    }
+                }
+            }
+
+        }catch (SQLException | ClassNotFoundException e) {
+            System.out.println("Erro SQL" + e);
+        }
+    }
+}
+
+********************************************************************
+Criptografar Senha e enviar para o banco de dados
+
+import org.mindrot.jbcrypt.BCrypt;
+
+public class PasswordUtils {
+
+    // Método para gerar o hash da senha
+    public static String hashPassword(String passwordPlaintext) {
+        String salt = BCrypt.gensalt();
+        return BCrypt.hashpw(passwordPlaintext, salt);
+    }
+
+    // Método para verificar a senha
+    public static boolean checkPassword(String passwordPlaintext, String storedHash) {
+        return BCrypt.checkpw(passwordPlaintext, storedHash);
+    }
+
+    public static void main(String[] args) {
+        // Exemplo de uso
+        String password = "minhaSenhaSecreta";
+        String hashedPassword = hashPassword(password);
+        System.out.println("Hashed Password: " + hashedPassword);
+
+        boolean isPasswordCorrect = checkPassword(password, hashedPassword);
+        System.out.println("Password correct: " + isPasswordCorrect);
+    }
+}
+
+##################################################################################################
