@@ -1,0 +1,40 @@
+Aqui é obrigatório que tenha dado tudo certo nos arquivos
+
+1 = APACHE TOMCAT + NETBEANS + SERVLET + SQL
+
+2 = SERVLET + LOGIN
+
+Pois por aqui, colocaremos a página pra rodar finalmente no Servidor WebServlet
+
+
+================================================================================
+
+1 = Para que a página funcione, primeiro temos que converter nosso projeto para 
+
+.war no caso o nome do nosso projeto seria JavaTestServlet-1.war
+
+Para que possamos fazer isso vá na pasta "target" dentro do projeto, esta pasta ficará
+ao lado de "src", e lá dentro procure por alguma pasta NOME_DO_PROJETO.war, se esta pasta
+já tiver totalmente atualizada só copiar ela e jogar dentro da pasta do TOMCAT neste caminho
+
+apache-tomcat-9.0.91/webapps/ROOT/JavaTestServlet-1.war
+
+Caso ela não esteja totalmente atualizada, favor clicar com o botão direito em cima do projeto
+aberto no IDE, e clique em clean e depois builder.
+
+
+2 = Em seguida peque esse arquivo e jogue dentro da pasta 
+
+apache-tomcat-9.0.91/webapps/ROOT/JavaTestServlet-1.war
+
+3 = Agora é só acessar o projeto:
+
+http://10.60.4.61:8080/JavaTestServlet/
+
+http://localhost:8080/JavaTestServlet/
+
+http://127.0.0.1:8080/JavaTestServlet/
+
+Atenção: Caso o JavaTestServlet-1.war , com esse formato não funcione, descompacte o arquivo .war e coloque todos
+na raiz do sistema ROOT no caminho apache-tomcat-9.0.91/webapps/ROOT
+
