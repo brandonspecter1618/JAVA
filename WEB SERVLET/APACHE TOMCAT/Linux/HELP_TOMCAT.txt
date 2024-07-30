@@ -1,0 +1,119 @@
+Instando e Configurando APACHE TOMCAT
+
+1 = Entre no site do Apache TOMCAT e baixe a versão mais adequado no caso 9 https://tomcat.apache.org/
+
+2 = Instale o JDK 20 ou OPENJDK, o caminho para configuração está na pasta "Linux - JDK".
+
+3 = Faça as configurações na pasta /var/local/apache-tomcat-9.0.91/conf, dentro encontrará
+as pastas 
+
+Obs: Não necessário ser nesta pasta /var/local pode ser dentro de /home/brandon
+
++-[root]@[debian]:/var/local/apache-tomcat-9.0.91/conf
++--> # ls
+catalina.policy      jaspic-providers.xml  server.xml        web.xml
+catalina.properties  jaspic-providers.xsd  tomcat-users.xml
+context.xml          logging.properties    tomcat-users.xsd
+
+server.xml = Utilizado por exemplo para mudar as portas de 8080 para outra caso esteja utilizando.
+
+tomcat-users.xml = Mude a senha do tomcat
+
+-->
+
+<user username="admin" password="22091992" roles="manager-gui"/>
+<user username="robot" password="22091992" roles="manager-script"/>
+
+<!--
+
+
+4 =  Executar o script de instalação /var/local/apache-tomcat-9.0.91/bin
+
++-[root]@[debian]:/var/local/apache-tomcat-9.0.91/bin
++--> # ls
+bootstrap.jar                 configtest.sh     shutdown.sh
+catalina.bat                  daemon.sh         startup.bat
+catalina.sh                   digest.bat        startup.sh  <------ Executar este script
+catalina-tasks.xml            digest.sh         tomcat-juli.jar
+ciphers.bat                   makebase.bat      tomcat-native.tar.gz
+ciphers.sh                    makebase.sh       tool-wrapper.bat
+commons-daemon.jar            setclasspath.bat  tool-wrapper.sh
+commons-daemon-native.tar.gz  setclasspath.sh   version.bat
+configtest.bat                shutdown.bat   <--- Stop Service    version.sh
+
+
+5 = Start and Stop Service TOMCAT.
+
++-[root]@[debian]:/var/local/apache-tomcat-9.0.91/bin
++--> # ./startup.sh  <-- Start Service TOMCAT
+
++-[root]@[debian]:/var/local/apache-tomcat-9.0.91/bin
++--> # ./shutdown.sh <-- Stop Service TOMCAT
+
+
+=============================================================================================
+
+Páginas JSP + TOMCAT
+
+1 = Segue o caminho onde colocará seus arquivos WEB 
+
+"/var/local/apache-tomcat-9.0.91/webapps/ROOT"
+
+2 = O arquivo index.jsp que achar nesta página é a mesma que abre de maneira padrão no endereço
+127.0.0.1:8080
+
++-[root]@[debian]:/var/local/apache-tomcat-9.0.91/webapps/ROOT
++--> # ls
+asf-logo-wide.svg  bg-nav.png    index.jsp          tomcat.svg
+bg-button.png      bg-upper.png  RELEASE-NOTES.txt  WEB-INF
+bg-middle.png      favicon.ico   tomcat.css
+
+
+Obs: Inclusive na pasta deste tutorial terá uma cópia do arquivo ROOT.
+
+Obs**: Para transformar os arquivos index.html ou *.html poderá somente mudar o final dos arquivos
+de HTML para jsp. Pois o servidor Servlet ler dados HTML, porém ler somente arquivos .JSP.  
+
+Obs***: Aplicar no topo de cada página, para reconhecer o ç ~e acentuação geral
+
+<%@ page session="false" pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>  
+<!--Utilizado para habilitar o UTF-8 para reconhecer ç ou ~ ou acentuação-->
+
+
+OBS: Até aqui é só pra fazer um teste se o TOMCAT está funcionando. Na próxima configuração
+colocaremos o TOMCAT nas configurações do IDE NETBEANS e faremos uma conexão
+com um SERVLET. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
