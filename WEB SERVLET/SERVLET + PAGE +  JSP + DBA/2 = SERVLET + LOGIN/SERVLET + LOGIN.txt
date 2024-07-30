@@ -1,0 +1,169 @@
+SERVLET + LOGIN
+
+************************************************************************************************************
+Atenção: É de suma importância que primeiro seja feita todas as configurações corretas
+do arquivo com o nome: 
+
+1 = APACHE TOMCAT + NETBEANS + SERVLET + SQL  <---- As configurações daqui tem que funcionar 100% corretas
+
+Para somente passar para a fase 2:
+
+2 = SERVLET + LOGIN
+
+************************************************************************************************************
+
+1 = Primeiro precisamos criar mais um Servlet, e este estará no package br.org.authenticationDB.ServletLogin
+e a classe se chamara ServletTestLogin, dentro a única diferença do que foi feito no projeto anterior
+é essa linha "String querySelectLogin = "select * from aluno WHERE login = ? AND password = ?""
+onde temos que fazer um pesquisa no banco para saber se o retorno é verdadeiro ou falso para um login.
+
+O código inteiro está abaixo
+
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package br.org.authenticationDB.ServletLogin;
+
+import java.io.PrintWriter;
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+import br.org.authenticationDB.conn.ConnectionDB;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+
+/**
+ *
+ * @author brandon
+ */
+
+@WebServlet("/servletTestLogin")
+public class ServletTestLogin extends HttpServlet{
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        PrintWriter out = response.getWriter();
+        Connection conn = ConnectionDB.connectionDB();
+        String querySelectLogin = "select * from aluno WHERE login = ? AND password = ?";
+        
+        try{
+            String email = request.getParameter("inp1"); //obtem os dados de email e password
+            String password = request.getParameter("inp2");
+            
+            pstmt = conn.prepareStatement(querySelectLogin);
+            pstmt.setString(1, email); // Os dados serao adicionados da esquerda pra  
+            pstmt.setString(2, password); //pra direita de numero 1..2 e por ai vai
+            rs = pstmt.executeQuery();  // WHERE login = 1 AND password = ?
+            //pstmt.close();
+            
+            //ResultSet obtem o resultado, e o "next()" proxima linha e executada
+            //se houver um resultado retorna true se nao false
+            
+            boolean loginSucess = rs.next(); //Maneira didatica
+            
+                if(loginSucess == true){
+                    JOptionPane.showMessageDialog(null, "Login Sucessfully");
+                    HttpSession session = request.getSession();
+                    session.setAttribute("sessionStart", true); //Inicia uma sessão como verdadeira
+                    response.sendRedirect("wiki.jsp"); //Redirecionado caso o login de verdadeiro
+                }else{
+                    JOptionPane.showMessageDialog(null, "Failed Login");
+                    response.sendRedirect("index.jsp");
+                }
+            
+            /*
+                if (rs.next()) {
+                    out.println("<p style='font-size:50px; color: #fff'>Login successful</p>");
+
+                }else {
+                    out.println("<p style='font-size:50px; color: #fff'>Login failed</p>");
+                }
+            */        
+        
+        }catch(SQLException e){
+            out.println("<p style='font-size:50px; color: #fff'>" + e + "</p>");
+        
+        }
+    }
+}
+
+
+2 = Redirecionamento de páginas abaixo caso o login dê certo e também ativa o ínicio de sessão.
+
+    if(loginSucess == true){
+        JOptionPane.showMessageDialog(null, "Login Sucessfully");
+        HttpSession session = request.getSession();
+        session.setAttribute("sessionStart", true);
+        response.sendRedirect("wiki.jsp"); //Redirecionado caso o login de verdadeiro
+    }else{
+        JOptionPane.showMessageDialog(null, "Failed Login");
+        response.sendRedirect("index.jsp");
+    }
+
+
+#############################################################################################################
+
+Servlet Session True and false
+
+As páginas por questão de segurança, precisa identificar se o atual usuário tem direito ao acesso ou não. 
+Neste caso é necessario fazer as configurações adequadas para o bloqueio de um usuário que não seja autorizado.
+
+1 = O código do Servlet está logo abaixo, serve para receber uma requisição da pagina, e caso a Sessão não esteja
+ativa redireciona para a página index.jsp para o usuário fazer login. 
+
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package br.org.authenticationDB.securePage;
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+/**
+ *
+ * @author brandon
+ */
+
+@WebServlet("/SecurePage")
+public class SecurePage extends HttpServlet {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession(false); // Não cria uma nova sessão se não existir
+        if (session == null || session.getAttribute("sessionStart") == null || !(Boolean) session.getAttribute("sessionStart")) {
+            response.sendRedirect("index.jsp"); // Redireciona para a página de login ou index
+            return;
+        }
+    }
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        doGet(request, response);
+    }   
+}
+
+
+
+2 = Todas as páginas que não forem o index.jsp, terão o código abaixo, onde o mesmo identifica
+se a sessão atual é ativa ou não. Caso não seja ativa, a mesma redireciona para index.jsp
+
+
+<%
+    HttpSession session = request.getSession(false); // Não cria uma nova sessão se não existir
+    if (session == null || session.getAttribute("sessionStart") == null || !(Boolean) session.getAttribute("sessionStart")) {
+        response.sendRedirect("index.jsp"); // Redireciona para a página de login
+        return;
+    }
+%>
