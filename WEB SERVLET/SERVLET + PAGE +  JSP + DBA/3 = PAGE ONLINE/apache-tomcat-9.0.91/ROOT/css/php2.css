@@ -1,0 +1,244 @@
+body {
+  background: radial-gradient(circle, #322538, #1f1f1f);
+  padding:75px;
+  font-size: 18px;
+
+}
+
+
+/*Menu Site*/
+
+nav {
+  position: relative;
+  top: -50px;
+  font-family: 'Oswald', sans-serif;
+}
+
+.menu-4 {
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.menu-4 * {
+  box-sizing: border-box;
+  -webkit-transition: all 0.35s ease;
+  transition: all 0.35s ease;
+  z-index: 100;
+}
+.menu-4 li {
+  display: inline-block;
+  list-style: outside none none;
+  margin: 0 1.5em;
+  overflow: hidden;
+}
+.menu-4 a {
+  padding: 0.3em 0;
+  color: #fff;   /*Cor Do menu*/
+  position: relative;
+  display: inline-block;
+  letter-spacing: 1px;
+  margin: 0;
+  text-decoration: none;
+}
+.menu-4 a:before,
+.menu-4 a:after {
+  position: absolute;
+  -webkit-transition: all 0.35s ease;
+  transition: all 0.35s ease;
+}
+.menu-4 a:before {
+  bottom: 100%;
+  display: block;
+  height: 3px;
+  width: 100%;
+  content: "";
+  background-color: #e67e22;
+}
+.menu-4 a:after {
+  padding: 0.3em 0;
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  content: attr(data-hover);
+  color: #fff;  /*Cor Do menu mouse hover*/
+  white-space: nowrap;
+}
+.menu-4 li:hover a,
+.menu-4 .current a {
+  transform: translateY(100%);
+}
+
+/*Menu Site*/
+
+/*Button JS CSS*/
+
+.var_1button {          /*With the Letter "A" */
+    position: relative;
+    bottom: 260px;
+    left: 187px;
+    border-top: 1px solid #96d1f8;
+    background: #7265d4;
+    background: -webkit-gradient(linear, left top, left bottom, from(#333785), to(#7265d4));
+    background: -webkit-linear-gradient(top, #333785, #7265d4);
+    background: -moz-linear-gradient(top, #333785, #7265d4);
+    background: -ms-linear-gradient(top, #333785, #7265d4);
+    background: -o-linear-gradient(top, #333785, #7265d4);
+    padding: 14.5px 29px;
+    -webkit-border-radius: 40px;
+    -moz-border-radius: 40px;
+    border-radius: 40px;
+    -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
+    -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
+    box-shadow: rgba(0,0,0,1) 0 1px 0;
+    text-shadow: rgba(0,0,0,.4) 0 1px 0;
+    color: white;
+    font-size: 16px;
+    font-family: Georgia, serif;
+    text-decoration: none;
+    vertical-align: middle;
+    }
+ .var_1button:hover {
+    border-top-color: #28597a;
+    background: #28597a;
+    color: #ccc;
+    }
+ .var_1button:active {
+    border-top-color: #1b435e;
+    background: #1b435e;
+    }
+
+
+/*CSS Javascript*/
+
+.var_p {
+    margin-top: 30px;
+    text-align: center;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 30px;
+    color: #fff;
+
+}
+
+.var_p_label{
+    margin-top: 40px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 18px;
+    color: #fff;
+    box-sizing: border-box;
+}
+
+input[type=text] {
+    position: relative;
+    bottom: 250px;
+    left: 70px;
+    margin-top: 16px;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 16px;
+    color: #fff;
+    width: 220px;
+    padding: 12px 20px;
+    display: inline-block;
+    border: 1px solid #000;
+    border-radius: 100px;
+    box-sizing: border-box;
+    background-color: #000;
+  }
+
+input::placeholder {
+    font-family: "Proxima Nova", -apple-system, "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+    font-size: 15.5px;
+    color: #ccc;
+}
+
+input:hover {
+	-webkit-transform: scale(1.05);
+	-moz-transform: scale(1.05);
+	transform: scale(1.02);
+
+}
+
+.var_input_select_gender{
+    position: relative;
+    bottom: 380px;
+    left: 400px;
+    margin-top: 20px;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 13px;
+    color: #fff;
+    width: 220px;
+    padding: 15px 20px;
+    display: inline-block;
+    box-sizing: border-box;
+    background-color: #000;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+ .projectCss{
+     margin-top: -50px;
+    
+}
+
+.var_div_input{
+    padding: 100px;
+    margin: auto;
+    width: 1000px;
+    height: 650px;
+    border: 5px solid #4C4E7F;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    box-sizing: border-box;
+}
+
+.var_div_form{
+    margin-left: 50px;
+}
+
+.var_div_label{
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+
+.var_div_input_input{
+    position: relative;
+    top: 60px;
+    left: 40px;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;  
+}
+
+
+
+ /***************************************************************/
+
+ .links{
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 30px;
+    color: #fff;
+}
+
+/*****************************************************************/
+
+.phpcss {
+
+    position: relative;
+    top: 200px;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 30px;
+    color: #fff;
+}
