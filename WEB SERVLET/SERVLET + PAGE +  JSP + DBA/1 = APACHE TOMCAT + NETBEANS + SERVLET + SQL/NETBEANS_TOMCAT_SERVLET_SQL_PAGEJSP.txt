@@ -1,0 +1,689 @@
+NETBEANS + TOMCAT + SERVLET
+
+*************************************************************************************************
+Atenção: A pasta com o projeto teste está no caminho abaixo, e tem que ser aberto no NETBEANS
+
+JAVA/WEB SERVLET/SERVLET + PAGE +  JSP + DBA/PROJETO TEST SERVLET
+
+*************************************************************************************************
+
+NETBEANS + TOMCAT
+
+1 = Vá en Services > Servers, botão direito adicionar Add Server... Escolha a opção Apache Tomcat or TomEE 
+Depois Next > Browser, e aqui escolha a localização do apache tomcat, no meu caso está localizado em
+
+/home/brandon/Documentos/apache-tomcat-9.0.91 depois clique em open
+
+Username: admin
+Password: ********
+
+Aqui coloque o usuário e senha configurado nas configurações do tomcat, caso queira saber onde configurar
+pode voltar no tutorial 2 = APACHE TOMCAT + INTELIJ
+
++-[root]@[debian]:/var/local/apache-tomcat-9.0.91/conf
++--> # ls
+catalina.policy      jaspic-providers.xml  server.xml        web.xml
+catalina.properties  jaspic-providers.xsd  tomcat-users.xml
+context.xml          logging.properties    tomcat-users.xsd
+
+server.xml = Utilizado por exemplo para mudar as portas de 8080 para outra caso esteja utilizando.
+
+tomcat-users.xml = Mude a senha do tomcat
+
+-->
+
+<user password="22091992" roles="manager-gui,manager-script,admin" username="admin"/>
+<user password="22091992" roles="manager-script" username="robot"/>
+
+
+<!--
+
+2 = Vá em services > servers botão direito e depois start ou stop.
+
+
+=====================================================================
+
+Criando um projeto Web Service
+
+1 = File > new project > Web Application > Project Name... > 
+
+Server: Apache Tomcat or TomEE
+Java EE version: Java EE 8
+
+Finish
+
+2 = Em Web Pages em index.html vai ser o arquivo princial que iremos alterar
+primeiro vamos renomear para index.jsp. Neste caso tem duas formas, botão direito
+properties > extension > jsp ou pelo caminho do projeto
+
+/home/brandon/NetBeansProjects/JavaServletTest/src/main/webapp
+
+e alterando na mão index.html > index.jsp
+
+
+3 = Vá em .m2/respository apague tudo que tiver lá dentro, esse repositório 
+seria do maven. Em seguida vá até a pasta Project Files > pom.xml e lá 
+vamos apagar o <build></build> e deixar somente o principal.  
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>br.org.authenticationDB</groupId>
+    <artifactId>JavaTestServlet</artifactId>
+    <version>1</version>
+    <packaging>war</packaging>
+    <name>JavaTestServlet-1</name>
+    
+    <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <failOnMissingWebXml>false</failOnMissingWebXml>
+        <jakartaee>8.0</jakartaee>
+    </properties>
+    
+    <dependencies>
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
+            <version>${jakartaee}</version>
+            <scope>provided</scope>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId> 
+            <version>42.7.3</version>
+        </dependency>
+    </dependencies>
+</project>
+
+
+
+Obs: A dependência do postgresql peguei direto do site https://jdbc.postgresql.org/download/
+
+
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId> 
+            <version>42.7.3</version>
+        </dependency>
+
+
+Obs: Apague tudo que tiver em /home/brandon/.m2/repository, caso tenha alguma coisa no maven
+que dê algum problema. 
+
+#####################################################################################################
+
+4 = Apague tudo que tiver na pasta Source Packages botão direito delete > safely delete > refactor
+depois botão direito java class, aqui o nome do nosso Servlet, name: ServletTest
+
+OBS: Não esquecer de colocar o "extends HttpServlet" caso o nome da classe esteja 
+diferente de ServletTestWeb 
+
+
+import java.io.PrintWriter;
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+
+/**
+ *
+ * @author brandon
+ */
+
+@WebServlet("/servletTest")  // Identificaçao do Servlet referente a pagina web
+public class ServletTestWeb extends HttpServlet{
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        /*
+        Recupera o número enviado do formulário       
+        Importante notar que request.getParameter captura um dado
+        como uma String, neste caso e necessario converter
+        com Integer.parseInt
+        */
+        
+        int inp1 = Integer.parseInt(request.getParameter("inp1")); 
+        int inp2 = Integer.parseInt(request.getParameter("inp2")); 
+        
+        PrintWriter out = response.getWriter();
+
+        // Converte o número para inteiro
+        
+
+        // Processa o número conforme necessário
+        // ...
+
+        // Responde ao cliente (opcional)
+        response.setContentType("text/html");
+        out.println("<html>"
+                   + "<body style='background-color: #333333'>" 
+                   + "<h1 style='color:#fff'>Result Below</h1>"
+                   + "<p style='font-size:20px; color: #fff'>" 
+                
+                   + "Número recebido inp1: " + inp1
+                   + "<br><br>"
+                   + "Número recebido inp2: " + inp2
+                
+                   + "</p>"
+                   + "</body>"
+                   + "</html>");
+        
+        out.println("The result is " + inp1);
+        out.println("<br><br>");
+        out.println("The result is " + inp2);
+    }    
+}
+
+
+#####################################################################################################
+
+5 = Agora a página de test index.jsp:
+
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Start Page</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+    <body>
+    
+    <h1>Enviar Número</h1>
+    <form action="servletTest" method="post">
+        <!--
+        
+        Aqui o nome "servletTest" da pagina associado ao servlet
+        que esta sendo identificado la no codigo servlet como
+        @WebServlet("/servletTest")
+        
+        Este nome "servletTest" e necessario para que a pagina seja
+        redirecionada ao Servlet corretamente.
+        
+        -->
+        <label for="numero">Value 1:</label>
+        <input name="inp1">
+        <br><br>
+        
+        <label for="numero">Value 2:</label>
+        <input name="inp2">
+        <input type="submit" value="Enviar">
+    </form>
+    </body>
+</html>
+
+
+#####################################################################################################
+
+
+6 = Botão direito no no projeto depois Clean(Limpa tudo que tiver do mavem) depois build with dependencies (Reconstrui todas as dependências.)
+
+/home/brandon/.m2/repository <------- Aqui está o repósitorio agora atualizado. 
+
+7 = Para executar o Servlet, clique com o botão direito do mouse no index.jsp e depois clique em "run file"
+
+7 = É importante notar que o caminho onde estará o index.jsp do projeto seria o caminho 
+
+http://localhost:8080/JavaServletTest/index.jsp
+
+ou 
+
+http://127.0.0.1:8080/JavaServletTest/index.jsp
+
+
+
+Obs: Onde podemos observar que o JavaServletTest é o mesmo nome do projeto criado
+no APACHE NETBEANS.
+
+TODO O CÓDIGO DO projeto
+
+PROJETO: JavaServletTest
+
+Caminho: /home/brandon/NetBeansProjects/JavaServletTest/src/main/java/ServletTestWeb.java
+
+
+RESULTADO DA EXECUÇÃO DO SOFTWARE
+
+http://localhost:8080/JavaServletTest/servletTest
+
+Result Below
+Número recebido inp1: 22
+
+Número recebido inp2: 44
+
+The result is 22
+
+The result is 44
+
+*************************************************************************************************
+Atenção: A pasta com o projeto teste está no caminho abaixo, e tem que ser aberto no NETBEANS
+
+JAVA/WEB SERVLET/SERVLET + PAGE +  JSP + DBA/PROJETO TEST SERVLET
+
+*************************************************************************************************
+
+
+
+
+
+
+#######################################################################################################
+
+*************************************************************************************************
+Atenção: A pasta com o projeto principal está no caminho abaixo, e tem que ser aberto no NETBEANS
+
+/home/brandon/Documentos/Brandon Study/SOFTWARE DEVELOPER/JAVA/WEB SERVLET/SERVLET + PAGE +  JSP + DBA/PROJETOS PRINCIPAL NETBEANS
+
+*************************************************************************************************
+
+Adicionar uma página No Servlet
+
+#Funcionamento Do Servlet: 
+
+O servlet não será executado diretamente no IDE, o mesmo receberá um dado da página via Post
+e em seguida a função doPost será executada. O servlet neste caso funciona como código 
+esperando uma resposta como netcat.
+
+Exemplo:
+
+Aqui um form de um HTML encaminhando o formulario via método post
+action="servletTest" utilizado para apontar diretamente para onde o Servlet está 
+<form action="servletTest" method="post"> 
+
+
+Código Servlet capturando o post do formulario e tratando no resto do código
+
+@WebServlet("/servletTest") //Aqui a identificação do servlet, seria o apontamento para onde envia as informações
+protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+
+    #Código de tratativa
+} 
+
+
+
+
+
+1 = Copie a pasta da página no caminho /home/brandon/NetBeansProjects/[Nome Projeto]/src/main/webapp
+ou arraste a página WEB para dentro de Web Pages. 
+
+Obs: META-INF e WEB-INF não podem ser apagadas ou alteradas. 
+
+Obs: A página está disponível no caminho 
+/home/brandon/Documentos/Brandon Study/SOFTWARE DEVELOPER/JAVA/WEB SERVLET/SERVLET + PAGE +  JSP + DBA/PAGE WEB FOR TEST/PAGE JSP
+dentro deste caminho existe um arquivo chamado testservlet.jsp para fazer teste de funcionamento do Servlet. 
+
+Obs: O projeto com todas as configurações corretas para referência está no caminho 
+/home/brandon/Documentos/Brandon Study/SOFTWARE DEVELOPER/JAVA/WEB SERVLET/SERVLET + PAGE +  JSP + DBA/PROJETOS
+o nome do projeto é "JavaTestServlet" e foi feito com a IDE NETBEANS. É só importar o projeto adicionar o TOMCAT.  
+
+2 = Dentro deste projeto no src no package br.org.authenticationDB.conn, temos uma class
+com nome de ConnetionDB.java, esta classe é utilizada para iniciar uma conexão simples
+com o DB para fazer as demais operações como Select, Insert etc...
+
+Neste caso, eu importei(import br.org.authenticationDB.conn.ConnectionDB;) 
+a classe "class ConnectionDB". E mais um if
+para vir a resposta de uma conexão bem sucedida.
+
+import br.org.authenticationDB.conn.ConnectionDB;
+
+Connection conn = ConnectionDB.connectionDB();
+
+
+    if(select == 0){
+            if(conn != null){
+                out.println("<h2>Connection Sucessfully</h2>");
+            }else{
+                out.println("<h2>Refused Connection</h2>");
+            }
+    }
+
+3 = No código existe a variável inteira select responsável por pegar a numeração
+associado ao que o usuário deseja fazer no banco de dados. Tudo através do html
+abaixo que esta na página testservlet.html.
+
+//ServletTest.java
+
+int select = Integer.parseInt(request.getParameter("inp4"));
+
+
+//testservlet.html
+        <option value="">Escolha a opção</option>
+        <option value="0">Test Connection</option>
+        <option value="1">Mostrar Todos Dados Do Banco De Dados</option>
+        <option value="2">Incluir No Banco De Dados</option>
+        <option value="3">Excluir Do Banco De Dados</option>
+
+
+4 = Parte do código que captura o nome do banco de dados
+
+ Statement stmt = conn.createStatement(); 
+    rs = stmt.executeQuery(queryCurrentDB);
+        if(rs.next()){
+            currentDatabase = rs.getString(1);
+            //System.out.println("O nome do banco e " + currentDatabase);
+        }
+    out.println("<html><body><h1>DATABASE: " + currentDatabase + "</h1></body></html>");
+
+
+5 = Código para fazer Test Connection
+
+        if(select == 0){
+            conn = objConnDB.connectionDB();
+                if(conn != null){
+                    out.println("<h2>Connection Sucessfully</h2>");
+                }else{
+                    out.println("<h2>Refused Connection</h2>");
+                }
+        }
+
+
+6 = Código para mostrar todo o banco de dados
+
+    if(select == 1){    
+        conn = objConnDB.connectionDB();
+        pstmt = conn.prepareStatement(querySelect);
+        rs    = pstmt.executeQuery();
+        
+        //Organizaçao em HTML para exibir a tabela
+        out.println("<html><body><h2>The Select query has following results : </h2>");
+        out.println("<hr></br><table cellspacing='0' cellpadding='5' border='1'>");
+        out.println("<tr>");
+        out.println("<td><b>Id</b></td>");
+        out.println("<td><b>Email</b></td>");
+        out.println("<td><b>Password</b></td>");
+        out.println("</tr>");
+        
+        //A cada getString(*) com a numeraçao correspondente captura um campo no DB
+        //Exemplo rs.getString(1) = Pega o ID do banco
+        //Exemplo rs.getString(2) = Pega o Email do banco
+        //Exemplo rs.getString(3) = Pega o Password do banco
+
+        while(rs.next()){
+            out.println("<tr>");
+            out.println("<td>"+rs.getString(1) + "</td>");
+            out.println("<td>"+rs.getString(2) + "</td>"); 
+            out.println("<td>"+rs.getString(3) + "</td>");
+            out.println("</tr>");
+        }
+
+                }
+
+7 =  Código para inserir dados no banco de dados, sendo inp2 e inp3 representação
+de email e password na page jsp em testservlet.jsp
+
+    if(select == 2){
+        //INP1 e INP2 representadis email e password na page testservlet.jsp
+        String email    = request.getParameter("inp2");  
+        String password = request.getParameter("inp3");
+        
+        conn = objConnDB.connectionDB();
+        pstmt = conn.prepareStatement(queryInsert);
+        pstmt.setString(1, email); //1 o primeiro da esquerda pra direita nos valores de INSERT VALUE
+        pstmt.setString(2, password);//VALKUES(1, 2) essa seria a representaçao no caso
+        pstmt.executeUpdate();  //Execuçao do codigo insert into aluno(login, password) values(?, ?)
+        pstmt.close();
+        
+        out.println("<html><body style='background-color: #333333'><h1 style='color:#fff'>Result Below</h1></body></html>");
+        out.println("<p style='font-size:20px; color: #fff'>" + "Insert Row Sucessfully");
+        out.println("</p>");
+    }
+
+8 = Código para excluir dados no banco de dados.
+
+    if(select == 3){
+        int delete = Integer.parseInt(request.getParameter("inp1"));
+        conn = objConnDB.connectionDB();
+        pstmt = conn.prepareStatement(queryDelete);
+        pstmt.setInt(1, delete); // Mesmo padrao de delete from aluno WHERE id = ?
+        int row = pstmt.executeUpdate();
+                
+            if(row != 0){
+                out.println("<html><body style='background-color: #333333'><h1 style='color:#fff'>Result Below</h1></body></html>");
+                out.println("<p style='font-size:20px; color: #fff'>" + "Delete Row Sucessfully");
+                out.println("</p>");    
+            }else{
+                out.println("<html><body style='background-color: #333333'><h1 style='color:#fff'>Result Below</h1></body></html>");
+                out.println("<p style='font-size:20px; color: #fff'>" + " Error Delete Row");
+                out.println("</p>");      
+            }
+    }
+
+############################################################################
+
+//Codigo SERVLET
+
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package br.org.authenticationDB.Servlet;
+
+import java.io.PrintWriter;
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import java.sql.Connection;
+import java.sql.Statement;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+import br.org.authenticationDB.conn.ConnectionDB;
+import java.sql.SQLException;
+
+/**
+ *
+ * @author brandon
+ */
+
+@WebServlet("/servletTest")
+public class ServletTest extends HttpServlet{
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        PrintWriter out = response.getWriter();
+        Connection conn = ConnectionDB.connectionDB();
+        String querySelect = "select * from aluno";
+        String queryInsert = "insert into aluno(login, password) values(?, ?)";
+        String queryDelete = "delete from aluno WHERE id = ?";
+        String queryCurrentDB = "select current_database()";
+        String currentDatabase = "";
+        String email, password;
+        int delete, row, select;
+
+        
+         /*
+        Recupera o número enviado do formulário       
+        Importante notar que request.getParameter captura um dado
+        como uma String, neste caso e necessario converter
+        com Integer.parseInt
+        */
+        
+        //int inp1 = Integer.parseInt(request.getParameter("inp1")); 
+        //int inp2 = Integer.parseInt(request.getParameter("inp2"));
+        
+        //Select responsavel por pegar a numeraçao da escolha do usuario
+        //Test Connection = 0
+        
+        select = Integer.parseInt(request.getParameter("inp4"));
+        
+          
+            try {
+                //Capturar o nome do banco de dados
+                Statement stmt = conn.createStatement();
+                rs = stmt.executeQuery(queryCurrentDB);
+                    if(rs.next()){
+                        currentDatabase = rs.getString(1);
+                        //System.out.println("O nome do banco e " + currentDatabase);
+                    }
+                out.println("<html><body><h1>DATABASE: " + currentDatabase + "</h1></body></html>");    
+                
+                if(select == 0){
+                        if(conn != null){
+                            out.println("<h2>Connection Sucessfully</h2>");
+                        }else{
+                            out.println("<h2>Refused Connection</h2>");
+                        }
+                }
+                
+                if(select == 1){    
+                    pstmt = conn.prepareStatement(querySelect);
+                    rs    = pstmt.executeQuery();
+                    
+                    //Organizaçao em HTML para exibir a tabela
+                    out.println("<html><body><h2>The Select query has following results : </h2>");
+                    out.println("<hr></br><table cellspacing='0' cellpadding='5' border='1'>");
+                    out.println("<tr>");
+                    out.println("<td><b>Id</b></td>");
+                    out.println("<td><b>Email</b></td>");
+                    out.println("<td><b>Password</b></td>");
+                    out.println("</tr>");
+                    
+                    //A cada getString(*) com a numeraçao correspondente captura um campo no DB
+                    //Exemplo rs.getString(1) = Pega o ID do banco
+                    //Exemplo rs.getString(2) = Pega o Email do banco
+                    //Exemplo rs.getString(3) = Pega o Password do banco
+                    while(rs.next()){
+                        out.println("<tr>");
+                        out.println("<td>"+rs.getString(1) + "</td>");
+                        out.println("<td>"+rs.getString(2) + "</td>"); 
+                        out.println("<td>"+rs.getString(3) + "</td>");
+                        out.println("</tr>");
+                    }
+
+                }
+                
+                if(select == 2){
+                    //INP1 e INP2 representadis email e password na page testservlet.jsp
+                    email    = request.getParameter("inp2");  
+                    password = request.getParameter("inp3");
+                    
+                    pstmt = conn.prepareStatement(queryInsert);
+                    pstmt.setString(1, email); //1 o primeiro da esquerda pra direita nos valores de INSERT VALUE
+                    pstmt.setString(2, password);//VALKUES(1, 2) essa seria a representaçao no caso
+                    pstmt.executeUpdate();  //Execuçao do codigo insert into aluno(login, password) values(?, ?)
+                    pstmt.close();
+                    
+                    out.println("<html><body style='background-color: #333333'><h1 style='color:#fff'>Result Below</h1></body></html>");
+                    out.println("<p style='font-size:20px; color: #fff'>" + "Insert Row Sucessfully");
+                    out.println("</p>");
+                }
+                
+                if(select == 3){
+                    delete = Integer.parseInt(request.getParameter("inp1"));
+                    
+                    pstmt = conn.prepareStatement(queryDelete);
+                    pstmt.setInt(1, delete); // Mesmo padrao de delete from aluno WHERE id = ?
+                    row = pstmt.executeUpdate();
+                            
+                        if(row != 0){
+                            out.println("<html><body style='background-color: #333333'><h1 style='color:#fff'>Result Below</h1></body></html>");
+                            out.println("<p style='font-size:20px; color: #fff'>" + "Delete Row Sucessfully");
+                            out.println("</p>");    
+                        }else{
+                            out.println("<html><body style='background-color: #333333'><h1 style='color:#fff'>Result Below</h1></body></html>");
+                            out.println("<p style='font-size:20px; color: #fff'>" + " Error Delete Row");
+                            out.println("</p>");      
+                        }
+                }
+             
+            }catch (SQLException e) {
+                out.println("Error" + e);
+            }
+       
+    }     
+}
+
+
+
+#################################################################################################################################################
+
+////Codigo Connection DATABASE
+
+
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package br.org.authenticationDB.conn;
+import javax.swing.JOptionPane;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
+/**
+ *
+ * @author brandon
+ */
+public class ConnectionDB {    
+    public static Connection connectionDB() {
+        String url = "jdbc:postgresql://127.0.0.1:5432/db_aula";
+        String username = "postgres";
+        String password = "22091992";
+        Connection conn = null;
+
+        try{
+            Class.forName("org.postgresql.Driver");
+            conn = DriverManager.getConnection(url, username, password);
+                if(conn != null){
+                    JOptionPane.showMessageDialog(null, "Connection Sucessfully");
+                }
+            return(conn);
+        }catch (SQLException | ClassNotFoundException e) {
+            JOptionPane.showMessageDialog(null, "Erro SQL" + e);
+            return(Connection) (e);
+        }
+        
+    }   
+}
+
+*************************************************************************************************
+Atenção: A pasta com o projeto principal está no caminho abaixo, e tem que ser aberto no NETBEANS
+
+/home/brandon/Documentos/Brandon Study/SOFTWARE DEVELOPER/JAVA/WEB SERVLET/SERVLET + PAGE +  JSP + DBA/PROJETOS PRINCIPAL NETBEANS
+
+*************************************************************************************************
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

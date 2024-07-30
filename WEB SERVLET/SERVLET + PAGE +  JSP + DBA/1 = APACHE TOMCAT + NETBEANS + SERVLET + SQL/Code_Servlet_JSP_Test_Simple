@@ -1,0 +1,127 @@
+Obs: Código inicial para teste do servlet.
+
+
+TODO O CÓDIGO DO projeto APACHE NETBEANS
+
+PROJETO: JavaServletTest
+
+Caminho: /home/brandon/NetBeansProjects/JavaServletTest/src/main/java/ServletTestWeb.java
+
+
+import java.io.PrintWriter;
+
+import javax.servlet.http.HttpServlet;
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+
+/**
+ *
+ * @author brandon
+ */
+
+@WebServlet("/servletTest")  // Identificaçao do Servlet referente a pagina web
+public class ServletTestWeb extends HttpServlet{
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        /*
+        Recupera o número enviado do formulário       
+        Importante notar que request.getParameter captura um dado
+        como uma String, neste caso e necessario converter
+        com Integer.parseInt
+        */
+        
+        int inp1 = Integer.parseInt(request.getParameter("inp1")); 
+        int inp2 = Integer.parseInt(request.getParameter("inp2")); 
+        
+        PrintWriter out = response.getWriter();
+
+        // Converte o número para inteiro
+        
+
+        // Processa o número conforme necessário
+        // ...
+
+        // Responde ao cliente (opcional)
+        response.setContentType("text/html");
+        out.println("<html>"
+                   + "<body style='background-color: #333333'>" 
+                   + "<h1 style='color:#fff'>Result Below</h1>"
+                   + "<p style='font-size:20px; color: #fff'>" 
+                
+                   + "Número recebido inp1: " + inp1
+                   + "<br><br>"
+                   + "Número recebido inp2: " + inp2
+                
+                   + "</p>"
+                   + "</body>"
+                   + "</html>");
+        
+        out.println("The result is " + inp1);
+        out.println("<br><br>");
+        out.println("The result is " + inp2);
+    }    
+}
+
+################################################################################################
+
+Podendo ser aberto dentro do netbeans através do botão Run Proejct
+
+http://localhost:8080/JavaServletTest/index.jsp
+
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Start Page</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+    <body>
+    
+    <h1>Enviar Número</h1>
+    <form action="servletTest" method="post">
+        <!--
+        
+        Aqui o nome "servletTest" da pagina associado ao servlet
+        que esta sendo identificado la no codigo servlet como
+        @WebServlet("/servletTest")
+        
+        Este nome "servletTest" e necessario para que a pagina seja
+        redirecionada ao Servlet corretamente.
+        
+        -->
+        <label for="numero">Value 1:</label>
+        <input name="inp1">
+        <br><br>
+        
+        <label for="numero">Value 2:</label>
+        <input name="inp2">
+        <input type="submit" value="Enviar">
+    </form>
+    </body>
+</html>
+
+################################################################################################
+
+
+RESULTADO DA EXECUÇÃO DO SOFTWARE
+
+http://localhost:8080/JavaServletTest/servletTest
+
+Result Below
+Número recebido inp1: 22
+
+Número recebido inp2: 44
+
+The result is 22
+
+The result is 44
