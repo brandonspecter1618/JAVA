@@ -1,5 +1,7 @@
 
+import java.util.Random;
 import java.util.Scanner;
+import javax.swing.JOptionPane;
 
 // STUDY JAVA
 
@@ -40,7 +42,7 @@ public class testJava {
 
             a = 50;
             b = 5.46;
-            c = "Hello Baby Lorena";
+            c = "Hello Brandon";
             d = true;
             e = 'D';
 
@@ -80,14 +82,20 @@ public class javaTest {
 
 //import java.util.Scanner;
 
-public class javaTest {
+public class Jstest1618 {
+    public static void main(String [] args){
+        Scanner scan = new Scanner(System.in);
+        String a, upper, lower;
+        
+        System.out.println("Enter any phrase:");
+        a = scan.nextLine(); 
+         
+        System.out.println(a.indexOf("Hello")); 
 
-    public static void main(String[] args){
-
-        Scanner input = new Scanner(System.in);
-
-        String txt = input.nextLine();
-        System.out.println(txt.indexOf("locate"));
+        //Hello Brandon = 0
+        //Brandon Hello = 8
+        // -1 Quando não acha o valor da pesquisa
+                                                                
     }
 }
 
@@ -96,16 +104,17 @@ public class javaTest {
 
 //import java.util.Scanner;
 
-public class javaTest {
+public class Jstest1618 {
+    public static void main(String [] args){
+        Scanner scan = new Scanner(System.in);
+        String a, upper, lower;
+        
+        System.out.println("Enter any phrase:");
+        a = scan.nextLine(); 
+         
+        System.out.println(a.length()); 
 
-    public static void main(String[] args){
-
-        Scanner input = new Scanner(System.in);
-
-        String a = input.nextLine();
-        System.out.println(a.length());
-
-
+        //Hello Brandon = 13 (São 12 letras e um espaçõ)                                                        
     }
 }
 
@@ -187,7 +196,31 @@ public class testJava {
     }
 }
 
+//OR
 
+public class Jstest1618 {
+    public static void main(String [] args){
+        Scanner scan = new Scanner(System.in);
+        int x, y, pi;
+        
+        try{  
+            System.out.println("Loop Value: ");
+            y = scan.nextInt();
+
+            System.out.println("Digite Par = 0 impar: 1");
+            pi = scan.nextInt();
+
+                for(x = 0; x <= y; x++){
+                    if(x % 2 == pi){
+                        System.out.println(x);
+                    }
+                }                                                           
+        }catch(Exception e){
+            System.out.println("Error " + e);
+        }
+        
+    }
+}
 ///////////////////////////////////////////////////////////////////
 
 ////////////////////////////
@@ -196,25 +229,23 @@ public class testJava {
 //                         / 
 ///////////////////////////
 
-
-public class testJava {
-
-    public static void main(String args[]){
+public class Jstest1618 {
+    public static void main(String [] args){
         Scanner scan = new Scanner(System.in);
-        System.out.println("Value 1: ");
-        int a = scan.nextInt();
+        int x;
         
-        try{
-            if(a % 2 == 0){
-                System.out.println("Este número é par");
-            }else{
-                    System.out.println("Este número é impar");
-            }
-        
+        try{  
+            System.out.println("Enter with number: ");
+            x = scan.nextInt();
+                if(x % 2 == 0){
+                    System.out.println("É um par");
+                }else{
+                    System.out.println("É um impar");
+                }
+            
         }catch(Exception e){
-        
-            System.out.println("Error: " + e);
-        }
+            System.out.println("Error " + e);
+        } 
     }
 }
 
@@ -227,111 +258,124 @@ public class testJava {
 //                         / 
 ///////////////////////////
 
-//import java.util.Scanner;
-public class javaTest {
-	
-    public static void main(String args[]){
-      myFunc();
-    }
-   
-    public static void myFunc(){
-       Scanner scan = new Scanner(System.in);
-       int a, b, result;
-       
-        try{
-           System.out.println("Value 1: ");
-           a = scan.nextInt();
-
-           System.out.println("Value 2: ");
-           b = scan.nextInt();
-
-           result = myFuncSoma(a, b);
-           System.out.println("The result is " + result);
-       
-        }catch(Exception e){
-       
-           System.out.println("Error of code is " + e);
-        }
-    }
-   
-    public static int myFuncSoma(int a, int b){
-       
-       int arr[] = {a, b};
-       int total = arr[0] + arr[1];
-       return(total);
-       
-    
-    //Poderia usar dessa forma também.    
-    /*
-       
-    public static int myFuncSoma(int a, int b){
-       
-       int arr[] = new int[3];
-       int total;
-       
-       arr[0] = a;
-       arr[1] = b;
-       total = arr[0] + arr[1];
-       return(total);
-    }   
-       
-    */
-   }
-
-//or
-
-/**
- *
- * @author brandon
- */
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- */
-
-package com.mycompany.myproject1;
 import java.util.Scanner;
 /**
  *
- * @author brandon
+ * @author hepta.brendo.p
  */
-
-public class MyProject {
-  
-    public static void main(String args[]){
-      myFunc();
-    }
-   
-    public static void myFunc(){
-       Scanner scan = new Scanner(System.in);
-       int a, b, result;
-       
+public class Jstest1618 {
+    public static void main(String[] args){
+        Scanner scan = new Scanner(System.in);
+        int a, b, total;
+        
         try{
-           System.out.println("Value 1: ");
-           a = scan.nextInt();
-
-           System.out.println("Value 2: ");
-           b = scan.nextInt();
-
-           result = myFuncSoma(a, b);
-           System.out.println("The result is " + result);
-       
+            System.out.println("Enter value 1:");
+            a = scan.nextInt();
+            
+            System.out.println("Enter value 2:");
+            b = scan.nextInt();
+            
+            total = calc1(a, b);
+            
+            System.out.println("The result is " + total);
+            
         }catch(Exception e){
-       
-           System.out.println("Error of code is " + e);
-        }
+            System.out.println("Error: " + e);
+        }    
     }
-   
-    public static int myFuncSoma(int a, int b){
-       
-       int total = a + b;
-       return(total);
-   }
+    
+    public static int calc1(int a, int b){
+        int args_a, args_b, result;
+        args_a = a;
+        args_b = b;
+        result = args_a + args_b;
+        return(result);
+    }
+}
+
+//OR
+
+
+import java.util.Scanner;
+/**
+ *
+ * @author hepta.brendo.p
+ */
+public class Jstest1618 {
+    public static void main(String[] args){
+        Scanner scan = new Scanner(System.in);
+        int a, b, total;
+        
+        try{
+            System.out.println("Enter value 1:");
+            a = scan.nextInt();
+            
+            System.out.println("Enter value 2:");
+            b = scan.nextInt();
+            
+            total = calc1(a, b);
+            
+            System.out.println("The result is " + total);
+            
+        }catch(Exception e){
+            System.out.println("Error: " + e);
+        }    
+    }
+    
+    public static int calc1(int a, int b){
+        int result;
+        int arr[] = {a, b};
+        result = arr[0] + arr[1];
+        return(result);
+    }
 }
 
 
-/////////////////////////////////////////////////////////////////////
+//or
 
-//////////////////////////////////////////////////////////////////
+
+import java.util.Scanner;
+/**
+ *
+ * @author hepta.brendo.p
+ */
+public class Jstest1618 {
+    
+    public static void main(String[] args){
+     funcMain();
+    }
+    
+    public static void funcMain(){
+        Scanner scan = new Scanner(System.in);
+        int a, b, total;
+        
+        try{
+            System.out.println("Enter value 1:");
+            a = scan.nextInt();
+            
+            System.out.println("Enter value 2:");
+            b = scan.nextInt();
+            
+            total = calc1(a, b);
+            
+            System.out.println("The result is " + total);
+            
+        }catch(Exception e){
+            System.out.println("Error: " + e);
+        }    
+    }
+    
+    public static int calc1(int a, int b){
+        int result;
+        int arr[] = {a, b};
+        result = arr[0] + arr[1];
+        return(result);
+    }
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////////////
 
 ////////////////////////////
 //                         / 
@@ -361,15 +405,48 @@ public class jsTest {
     }
 }
 
+//OR
 
-//or 
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ */
 
-package com.specter.javacourse;
+package br.com.packet1.jstest1618;
 
+
+import java.util.Scanner;
 /**
  *
  * @author hepta.brendo.p
  */
+public class Jstest1618 {
+    
+    public static void main(String[] args){
+     myFuncMain();
+    }
+    
+    public static void myFuncMain(){
+        int x;
+        int[] arr = new int[100];
+        
+        try{
+            for(x = 0; x <= 100; x++){
+                arr[x] = x;
+                System.out.println(arr[x]);
+            }
+            
+        }catch(Exception e){
+            System.out.println("Error: " + e);
+        }    
+    }
+}
+
+
+
+////////////////////////////////////////////////////////////////////////////////
+
+package com.specter.javacourse;
+
 public class jsTest {
     public static void main(String args[]){
       
@@ -389,7 +466,57 @@ public class jsTest {
     }
 }
 
-//or
+//OR
+
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ */
+
+package br.com.packet1.jstest1618;
+
+
+import java.util.Scanner;
+/**
+ *
+ * @author hepta.brendo.p
+ */
+public class Jstest1618 {
+    
+    public static void main(String[] args){
+     myFuncMain();
+    }
+    
+    public static void myFuncMain(){   
+        try{
+            
+            int result_return;
+            
+            result_return = myFuncArray();
+            System.out.println("The result is " + result_return);
+            
+            
+        }catch(Exception e){
+            System.out.println("Error: " + e);
+        }    
+    }
+    
+    public static int myFuncArray(){
+        int a, x;
+        int[] arr = new int[101];
+
+            
+            for(x = 0; x <= 100; x++){
+                arr[x] = x;
+            }
+        a = arr[30] + arr[20];    
+        return(a);     
+    }
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
+
+//OR
 
 package br.com.project1.brandon.javatest1618;
 import java.util.Scanner;
@@ -430,6 +557,8 @@ public class JavaTest1618 {
     }  
 }
 
+////////////////////////////////////////////////////////////////////////////////
+
 //import java.util.Scanner;
 
 public class javaTest {
@@ -452,7 +581,44 @@ public class javaTest {
     }
 }
 
-//or
+//OR
+
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ */
+
+package br.com.packet1.jstest1618;
+
+
+import java.util.Scanner;
+/**
+ *
+ * @author hepta.brendo.p
+ */
+public class Jstest1618 {
+    
+    public static void main(String[] args){
+     myFuncMain();
+    }
+    
+    public static void myFuncMain(){   
+        try{
+            
+            String[] arr = {"Volvo", "Ferrari", "BMW", "Lamborgini"};
+                for(int x = 0; x <= arr.length; x++){
+                    System.out.println(arr[x]);
+                }
+            
+        }catch(Exception e){
+            System.out.println("Error: " + e);
+        }    
+    }
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+
+//OR
 
 //import java.util.Scanner;
 public class javaTest {
@@ -479,44 +645,105 @@ public class javaTest {
     }	
 }
 
-//Project Randomic Music with Java Array + Random
+//OR
 
-package com.mycompany.project1;
-
-import javax.swing.JOptionPane;
+package br.com.packet1.jstest1618;
 
 
+import java.util.Scanner;
 /**
  *
- * @author brandon
+ * @author hepta.brendo.p
  */
-public class JavaTest1618 {
+public class Jstest1618 {
+    
+    public static void main(String[] args){
+     myFuncMain();
+    }
+    
+    public static void myFuncMain(){   
+        int a, b, result;
+        Scanner scan = new Scanner(System.in);
+        
+        
+        try{
+            System.out.println("Value1: ");
+            a = scan.nextInt();
+            
+            System.out.println("Value2: ");
+            b = scan.nextInt();
+            
+            result = myFuncArrayCalc(a, b);
+            System.out.println("The result is " + result);
+         
+            
+        }catch(Exception e){
+            System.out.println("Error: " + e);
+        }    
+    }
+    
+    public static int myFuncArrayCalc(int a, int b){
+        int arr[] = new int[2];
+        int a_args, b_args,total;
+        
+        arr[0] = a;
+        arr[1] = b;
+        total = arr[0] + arr[1];
+        return(total);   
+    }
+}
 
-     public static void main(String[] args){
-	 
-	Scanner scan = new Scanner(System.in);
-        int playList = 500;
-        double aleatory;
-        int arrMusic[] = new int[1000];
+
+////////////////////////////////////////////////////////////////////////////////
+
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ */
+
+package br.com.packet1.jstest1618;
+
+
+import java.util.Random;
+import java.util.Scanner;
+import javax.swing.JOptionPane;
+/**
+ *
+ * @author hepta.brendo.p
+ */
+public class Jstest1618 {
+    
+    public static void main(String[] args){
+     myFuncMain();
+    }
+    
+    public static void myFuncMain(){
+        int UploadMusic[] = new int[500];
+        int playListMusic[] = new int[500];
+        
+        Random rand = new Random();
+        int aleatory;
         
         try{
             
-            for(int z = 0; z <= playList; z++){
-                arrMusic[z] = z;
+            for(int x = 0; x <= UploadMusic.length - 1; x++){
+                UploadMusic[x] = x;
+                playListMusic[x] = UploadMusic[x];
             }
-        
-            for(int x = 0; x < 10; x++){
-                aleatory = Math.random() * arrMusic[playList];
-                System.out.println("Música Aleatória " + (int)aleatory);
-                JOptionPane.showMessageDialog(null, "Next Music ?");
+            
+            for(int y = 0; y <= UploadMusic.length - 1; y++){
+            
+                aleatory = rand.nextInt(playListMusic.length);
+                JOptionPane.showMessageDialog(null, "Music atual !!! Próxima clique em OK " + playListMusic[aleatory]);                 
             }
-        
+ 
         }catch(Exception e){
-            System.err.println("Error is " + e);
-        }
+            System.out.println("Error: " + e);
+        }    
     }
-
 }
+
+
+
 
 //////////////////////////////////////////////////////////////////
 
@@ -593,44 +820,51 @@ public class NewClass {
 //                         / 
 ////////////////////////////
 
-public class MyProject {
-    int x; //Variável Global
-    public MyProject(int y){ //Recuperação do argumento
-        x = 5 + y; // Valor 5 dentro do contructor
+public class Jstest1618 {
+    int x;  //Por não ser static o main que é um classe não pode pegar uma variável não static. Por isso vc precisa criar um objeto pra acessar.
+    static int z = 20;  // Aqui sim vc pode acessar a partir da classe static 
+    public Jstest1618(int z){
+        this.x = z + 10;  //Meu constructor está armazenando dados dentro da variável fora de escopo.
     }
+
     public static void main(String args[]){
-           MyProject objMyProject = new MyProject(20); //Criação do objeto com argumento 20 
-           System.out.println("The number constructor is " + objMyProject.x); 
-           //Recuperação do valor
+        int a;
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Value 1");
+        a = scan.nextInt();
+        Jstest1618 objJs = new Jstest1618(a);
+        System.out.println("Valor da variável X do objeto" + objJs.x); //Aqui estou pegando o valor da variável A atráves de um constructor fora de escopo                 
+        System.out.println("Valor da variável agora estática e classe como é estática consegue acessar" + z);    
+        scan.close(); 
     }
 }
 
-
 //or
 
-public class MyProject {
-    int a, b, result;
-   
-        public MyProject(int x, int y){  
-           this.a = x;
-           this.b = y;
-           result = a + b;
-        }
-   
-   public static void main(String args[]){
-       int a = 0, b = 0;
-       Scanner scan = new Scanner(System.in);
-       MyProject objMyProject = new MyProject(a, b);
-       
-       System.out.println("Value 1: ");
-       a = scan.nextInt();
-       
-       System.out.println("Value 2: ");
-       b = scan.nextInt();
-       
-       System.out.println("the result is " + objMyProject.result);
-   
-   }
+public class Jstest1618 {
+    int a_cons, b_cons;
+    
+    public Jstest1618(int x, int z){ //Constructor tem que ter o mesmo nome da classe
+        this.a_cons = x;  //this associea a_cons a mesma coisa que variável x
+        this.b_cons = z;
+    }
+
+    public static void main(String args[]){
+        int a, b, result;
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Value 1: ");
+        a = scan.nextInt();
+        
+        System.out.println("Value 2: ");
+        b = scan.nextInt();
+        
+        Jstest1618 objJsTest = new Jstest1618(a, b);
+        
+        result = objJsTest.a_cons + objJsTest.b_cons; //Aqui estou recuperando dados de uma variável fora de escopo com o objeto constructor
+        
+        System.out.println("The result is " + result); //Resultado final
+        scan.close(); 
+    }
 }
 
 
@@ -646,53 +880,107 @@ public class MyProject {
  *
  * @author brandon
  */
-public class JavaTest1618 {
-    int a, b, result;
-    
-    
-    public JavaTest1618(int x, int y){
-        this.a = x;
-        this.b = y;             //Sobrecarga
-        result = a + b;
-        System.out.println("The result is " + result);
-    }
-    
-    public JavaTest1618(int x, int y, int z){
-        this.a = x + z;
-        this.b = y;             ////Sobrecarga
-        result = a - b;
-        System.out.println("The result final is " + result);
-    }
-    
-    public static void main(String[] args) {
-
-        JavaTest1618 objJava = new JavaTest1618(20,8);
-    }
-}
-
-//TEST
-
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  */
 
-package br.brandon.project1;
-import java.util.Scanner;
-import java.util.Locale;
+package br.com.packet1.jstest1618;
 
+
+import java.util.Random;
+import java.util.Scanner;
+import javax.swing.JOptionPane;
 /**
  *
- * @author brandon
+ * @author hepta.brendo.p
  */
-public class JavaTest1618 {
-
-    public static void main(String[] args) {
-
+public class Jstest1618 {
+    int a, b, c;
+    public Jstest1618(int a, int b){  //SOMA
+        this.a = a;
+        this.b = b;
     }
+    
+    public Jstest1618(int a, int b, int c){ //Aqui serve pra deixar o código mais limpo, organizado e seguro por exemplo melhor sempre forçar 3x valores Jstest1618(int a, int b, int c) ou Jstest1618(int a, int b) deixar mais flexível ?
+        
+        this.a = a;
+        this.b = b;
+        this.c = c;
+        
+    }
+    
+    public int CalcAB(){ //Nome do método 
+        return(a + b);   // Aqui um método para calcular o que precisa
+    }
+    
+    public int CalcABC(){
+        return((a + b) * c);
+    }
+   
+    
+    public static void main(String args[]){
+        int a, b, c, choose;
+        Scanner scan = new Scanner(System.in);
+        
+        System.out.println("Quantos valores para calcular ? 2 ou 3");
+        choose = scan.nextInt();
+        
+            if(choose == 2){
+                
+                System.out.println("Value1:");
+                a = scan.nextInt();
 
+                System.out.println("Value2:");
+                b = scan.nextInt();
+                
+                Jstest1618 objJsAB = new Jstest1618(a, b);
+                System.out.println("The resultAB is " + objJsAB.CalcAB());
+                
+            }else if(choose == 3){
+                
+                System.out.println("Value1:");
+                a = scan.nextInt();
+
+                System.out.println("Value2:");
+                b = scan.nextInt();
+                
+                System.out.println("V4alue3:");
+                c = scan.nextInt();
+                
+                Jstest1618 objJsABC = new Jstest1618(a, b, c);
+                System.out.println("The resultABC is " + objJsABC.CalcABC());
+            }else{
+                System.out.println("Opção inválida");
+            }
+    scan.close();  // importante fechar o Scanner
+    }
 }
 
-class People{
+
+/////////////////////////////////////////////////////////////////
+
+
+//OR
+
+
+package br.com.packet1.jstest1618;
+
+
+import java.util.Random;
+import java.util.Scanner;
+import javax.swing.JOptionPane;
+/**
+ *
+ * @author hepta.brendo.p
+ */
+public class Jstest1618 {
+    public static void main(String[] args){
+        PeopleDB obj = new PeopleDB();
+        obj.run();
+    }
+}
+
+class People{  //Classe Objeto
     
     private String nome;
     private int idade;
@@ -721,53 +1009,39 @@ class People{
         }   
 }
 
-class PeopleCalc extends People{
+class PeopleDB {
 
-    public void people(){
+    public void run(){
         Scanner scan = new Scanner(System.in);
-        System.out.println("Quantos pessoas serão digitadas ?");
+
+        System.out.println("Quantas pessoas?");
         int n = scan.nextInt();
-        double soma = 0.0;
-        double media = 0.0;
-        int i = 0;
-        People[] vect = new People[n];
-        scan.nextLine();
-        
-        //Captura os dados
-            
-            for(int x = 0; x < n; x++){
-                System.out.println("Nome: ");
-                String nome = scan.nextLine();
-                
-                System.out.println("Idade: ");
-                int idade = scan.nextInt();
-                
-                System.out.println("Altura: ");
-                double altura = scan.nextDouble();
-                scan.nextLine();
-                vect[x] = new People(nome, idade, altura);
-                soma += vect[x].getAltura();
-            }
-            
-            
-        System.out.println("\nMenores de 16 anos: ");
-        //Captura pessoas com menos de 16 anos
-        
-            for(int y = 0; y < n; y++){
-                if(vect[y].getIdade() < 16){
-                    i += 1;
-                    System.out.println(vect[y].getNome());
-                }
-            }
-        //Verifica a quantidade de pessoas com 16 anos
-        System.out.println("\nQuantidade de Pessoas com 16 anos é " + i);
-            
-        //Cálcula a média
-        
-        System.out.print("\nAltura média: ");
-        media = soma / n;
-        System.out.print(media);
 
+        People[] arr = new People[n];
+        double soma = 0;
+
+        for(int i = 0; i < n; i++){
+
+            scan.nextLine(); // limpar buffer
+
+            System.out.println("Nome:");
+            String nome = scan.nextLine();
+
+            System.out.println("Idade:");
+            int idade = scan.nextInt();
+
+            System.out.println("Altura:");
+            double altura = scan.nextDouble();
+           
+            arr[i] = new People(nome, idade, altura);
+            soma += arr[i].getAltura();
+            System.out.println(
+                    "Name: " + arr[i].getNome() + "\n" +
+                    "Idade: " + arr[i].getIdade() + "\n" +
+                    "Altura: " + arr[i].getAltura()
+            );
+        }
+
+        System.out.println("Média: " + (soma / n));
     }
-
 }
