@@ -6,116 +6,509 @@ Criando um Array de Objetos
 /////////////////////////////////////////////////////////////////////////////////
 //Exemplo 1
 
-public class Main {
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ */
+
+package br.com.packet1.jstest1618;
+
+
+import java.util.Random;
+import java.util.Scanner;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+/**
+ *
+ * @author hepta.brendo.p
+ */
+public class Jstest1618 {
     public static void main(String[] args){
-        int set_x, set_y, total;
+        PeopleDB obj = new PeopleDB();
+        obj.run();
+    }
+}
+
+class People{  //Classe Objeto
+    
+    private String nome;
+    private int idade;
+    private double altura;
+    
+        public People(String nome, int idade, double altura){
+            
+            this.nome   = nome;
+            this.idade  = idade;
+            this.altura = altura;
+        }
+        
+        public String getNome(){
+        
+            return nome;
+        }
+        
+        public int getIdade(){
+        
+            return idade;
+        }
+        
+        public double getAltura(){
+        
+            return altura;
+        }   
+}
+
+class PeopleDB {
+
+    public void run(){
         Scanner scan = new Scanner(System.in);
-        Calc[] vect = new Calc[1];  //Obrigado colocar ao menos "1", ou seja, pelo menos uma entrada no array
 
-        System.out.println("Value 1: ");
-        set_x = scan.nextInt();
+        System.out.println("Quantas pessoas?");
+        int n = scan.nextInt();
 
-        System.out.println("Value 2: ");
-        set_y = scan.nextInt();
+        People[] arr = new People[n];
+        double soma = 0;
 
-        vect[0] = new Calc(set_x, set_y);
+        for(int i = 0; i < n; i++){
 
-        total = vect[0].x + vect[0].y;
+            scan.nextLine(); // limpar buffer
 
-        System.out.println("The result is " + total);
+            System.out.println("Nome:");
+            String nome = scan.nextLine();
 
+            System.out.println("Idade:");
+            int idade = scan.nextInt();
+
+            System.out.println("Altura:");
+            double altura = scan.nextDouble();
+           
+            arr[i] = new People(nome, idade, altura);
+            soma += arr[i].getAltura();
+            System.out.println(
+                    "Name: " + arr[i].getNome() + "\n" +
+                    "Idade: " + arr[i].getIdade() + "\n" +
+                    "Altura: " + arr[i].getAltura()
+            );
+        }
+
+        System.out.println("Média: " + (soma / n));
+        scan.close();
+    }
+}
+
+///////////////////////////////////////////////////////////////////
+//Exemplo 2
+
+import java.util.Random;
+import java.util.Scanner;
+import javax.swing.JOptionPane;
+/**
+ *
+ * @author hepta.brendo.p
+ */
+public class Jstest1618 {
+    public static void main(String args[]){
+        int a, b;
+        Scanner scan = new Scanner(System.in);
+
+        Calc[] objCalc = new Calc[1]; 
+ 
+        System.out.println("Value1: ");
+        a = scan.nextInt();
+
+        System.out.println("Value2: ");
+        b = scan.nextInt();
+
+        objCalc[0] = new Calc();
+        objCalc[0].setCalc(a, b);
+
+        System.out.println("The result is " + objCalc[0].getCalcSoma());
+        
+               
+    }
+}
+
+class Calc{   
+    int a, b, result;
+    
+    public void setCalc(int a, int b){
+        this.a = a;
+        this.b = b;
+    }
+    
+    public int getCalcSoma(){
+        result = a + b;
+        return(result);
+    }
+}
+
+//OR
+
+
+
+package br.com.packet1.jstest1618;
+
+
+import java.util.Scanner;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+/**
+ *
+ * @author hepta.brendo.p
+ */
+public class Jstest1618 {
+    public static void main(String args[]){
+        int a, b;
+        Scanner scan = new Scanner(System.in);
+        JFrame frame = new JFrame(); //Crio um objeto Jframe
+        frame.setAlwaysOnTop(true);  // utilizo o objeto frame criado acima para forçar a janela sempre aparacer para o usuário, pois se colocasse somente null no JoptionPane, a janela aparece aonde o OS quer, muitas vezes atrás do Netbeans
+        
+        
+        Calc[] objCalc = new Calc[1]; 
+ 
+        //Aqui  showInputDialog(Aparece uma janela para digitar) retornar uma string, logo em seguida eu converto com integer.parseInt()
+        a = Integer.parseInt(JOptionPane.showInputDialog(frame, "Value1: ")); 
+        b = Integer.parseInt(JOptionPane.showInputDialog(frame, "Value2: "));
+        
+
+        objCalc[0] = new Calc();
+        objCalc[0].setCalc(a, b);
+        
+        JOptionPane.showMessageDialog(frame, "The result is " + objCalc[0].getCalcSoma());
+        frame.dispose(); //Utilizado pra fechar o Jframe       
+    }
+}
+
+class Calc{   
+    int a, b, result;
+    
+    public void setCalc(int a, int b){
+        this.a = a;
+        this.b = b;
+    }
+    
+    public int getCalcSoma(){
+        result = a + b;
+        return(result);
+    }
+}
+
+
+/////////////////////////////////////////////////////////////////////
+
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ */
+
+package br.com.packet1.jstest1618;
+
+
+import java.util.Scanner;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+/**
+ *
+ * @author hepta.brendo.p
+ */
+public class Jstest1618 {
+    public static void main(String args[]){
+        int a, b;
+        Scanner scan = new Scanner(System.in);
+        JFrame frame = new JFrame(); //Crio um objeto Jframe
+        frame.setAlwaysOnTop(true);  // utilizo o objeto frame criado acima para forçar a janela sempre aparacer para o usuário, pois se colocasse somente null no JoptionPane, a janela aparece aonde o OS quer, muitas vezes atrás do Netbeans
+         
+ 
+        System.out.println("Value1: ");
+        a = scan.nextInt();
+
+        System.out.println("Value2: ");
+        b = scan.nextInt();
+
+        Calc objCalc = new Calc(a, b);
+
+        System.out.println("The result is " + objCalc.getCalcSoma());
+        JOptionPane.showMessageDialog(frame, "The result is " + objCalc.getCalcSoma());
+        //As vezes a janela aparece atrás da janela do Netbeans. Se minimizar aparece
+               
+    }
+}
+
+class Calc{   
+    int a, b, result;
+    
+    public  Calc(int a, int b){
+        this.a = a;
+        this.b = b;
+    }
+    
+    public int getCalcSoma(){
+        result = a + b;
+        return(result);
+    }
+}
+
+
+//OR
+
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ */
+
+package br.com.packet1.jstest1618;
+
+
+import java.util.Scanner;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+/**
+ *
+ * @author hepta.brendo.p
+ */
+public class Jstest1618 {
+    public static void main(String args[]){
+        int a, b;
+        JFrame frame = new JFrame(); //Crio um objeto Jframe
+        frame.setAlwaysOnTop(true);  // utilizo o objeto frame criado acima para forçar a janela sempre aparacer para o usuário, pois se colocasse somente null no JoptionPane, a janela aparece aonde o OS quer, muitas vezes atrás do Netbeans
+         
+ 
+        a = Integer.parseInt(JOptionPane.showInputDialog(frame, "Value1: "));
+        b = Integer.parseInt(JOptionPane.showInputDialog(frame, "Value2: "));
+
+        Calc objCalc = new Calc(a, b);
+
+        JOptionPane.showMessageDialog(frame, "The result is " + objCalc.getCalcSoma());
+        //As vezes a janela aparece atrás da janela do Netbeans. Se minimizar aparece
+        frame.dispose(); //Utilizado pra fechar o Jframe       
+    }
+}
+
+class Calc{   
+    int a, b, result;
+    
+    public  Calc(int a, int b){
+        this.a = a;
+        this.b = b;
+    }
+    
+    public int getCalcSoma(){
+        result = a + b;
+        return(result);
+    }
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+
+//////////////
+//Exemplo 2 Variante
+
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ */
+
+package br.com.packet1.jstest1618;
+
+
+import java.util.Random;
+import java.util.Scanner;
+import javax.swing.JOptionPane;
+/**
+ *
+ * @author hepta.brendo.p
+ */
+public class Jstest1618 {
+    public static void main(String[] args){
+        Scanner scan = new Scanner(System.in);
+        int choosen;
+        System.out.println("Escolha 1 = + // 2 = - // 3 = * // 4 = /");    
+        Calc[] arrCalc = new Calc[1];
+        choosen = scan.nextInt();
+        
+            System.out.println("Value1");
+            int a = scan.nextInt();
+
+            System.out.println("Value2");
+            int b = scan.nextInt();
+
+            arrCalc[0] = new Calc(a, b);
+            
+            if(choosen == 1){
+                System.out.println("The Result is " + arrCalc[0].CalcAmaisB());
+            }else if (choosen == 2){
+                System.out.println("The Result is " + arrCalc[0].CalcAmenosB());
+            }else if(choosen == 3){
+                System.out.println("The Result is " + arrCalc[0].CalcAmultiB());
+            }else if(choosen == 4){
+                System.out.println("The Result is " + arrCalc[0].CalcADivB());
+            }else{
+                System.out.println("Comando incorreto");
+            }
+    scan.close();
     }
 }
 
 class Calc{
-    int x, y;
-        public Calc(int set_x, int set_y){ //Constructor
-            this.x = set_x;
-            this.y = set_y;
-        }
+    int a, b;
 
+    public Calc(int a, int b){
+        this.a = a;
+        this.b = b;
+    }
+    
+    public int CalcAmaisB(){
+        return(a + b);
+    }
+    
+    public int CalcAmenosB(){
+        return(a - b);
+    }
+    
+    public int CalcAmultiB(){
+        return(a * b);
+    }
+    
+    public int CalcADivB(){
+        return(a / b);
+    }
+    
 }
+
+//OR
+
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ */
+
+package br.com.packet1.jstest1618;
+
+
+import java.util.Scanner;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+/**
+ *
+ * @author hepta.brendo.p
+ */
+public class Jstest1618 {
+    public static void main(String args[]){
+        int a, b, choosen;
+        JFrame frame = new JFrame(); //Crio um objeto Jframe
+        frame.setAlwaysOnTop(true);  // utilizo o objeto frame criado acima para forçar a janela sempre aparacer para o usuário, pois se colocasse somente null no JoptionPane, a janela aparece aonde o OS quer, muitas vezes atrás do Netbeans
+        
+        choosen = Integer.parseInt(JOptionPane.showInputDialog(frame, "Escolha 1 = + // 2 = - // 3 = * // 4 = /"));
+        Calc[] arrCalc = new Calc[1];
+        
+      
+        a = Integer.parseInt(JOptionPane.showInputDialog(frame, "Value1: "));
+        b = Integer.parseInt(JOptionPane.showInputDialog(frame, "Value2: "));
+
+        arrCalc[0] = new Calc(a, b);
+            
+            if(choosen == 1){
+                JOptionPane.showMessageDialog(frame, "The Result is " + arrCalc[0].CalcAmaisB());
+            }else if (choosen == 2){
+                JOptionPane.showMessageDialog(frame, "The Result is " + arrCalc[0].CalcAmenosB());
+            }else if(choosen == 3){
+                JOptionPane.showMessageDialog(frame, "The Result is " + arrCalc[0].CalcAmultiB());
+            }else if(choosen == 4){
+                JOptionPane.showMessageDialog(frame, "The Result is " + arrCalc[0].CalcADivB());
+            }else{
+                System.out.println("");
+                JOptionPane.showMessageDialog(frame, "Comando incorreto");
+            }
+    frame.dispose(); //Utilizado pra fechar o Jframe        
+    }
+}
+
+class Calc{
+    int a, b;
+
+    public Calc(int a, int b){
+        this.a = a;
+        this.b = b;
+    }
+    
+    public int CalcAmaisB(){
+        return(a + b);
+    }
+    
+    public int CalcAmenosB(){
+        return(a - b);
+    }
+    
+    public int CalcAmultiB(){
+        return(a * b);
+    }
+    
+    public int CalcADivB(){
+        return(a / b);
+    }
+    
+}
+
+
 
 
 ////////////////////////////////////////////////////////////////////////////////
 //Exemplo 2 - Variante de Array Objeto utilzando GET and SET
 
-public class Main {
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ */
+
+package br.com.packet1.jstest1618;
+
+
+import java.util.Random;
+import java.util.Scanner;
+import javax.swing.JOptionPane;
+/**
+ *
+ * @author hepta.brendo.p
+ */
+public class Jstest1618 {
     public static void main(String[] args){
-        int set_x, set_y, total;
+        int x, n;
         Scanner scan = new Scanner(System.in);
-        Calc[] vect = new Calc[1];  //Obrigado colocar ao menos "1", ou seja, pelo menos uma entrada no array
-
-        System.out.println("Value 1: ");
-        set_x = scan.nextInt();
-
-        System.out.println("Value 2: ");
-        set_y = scan.nextInt();
-
-        vect[0] = new Calc();
-        vect[0].setX(set_x, set_y);
-
-        total = vect[0].getX() + vect[0].getY();
-
-        System.out.println("The result is " + total);
-
+        
+        
+        System.out.println("Quantos cálculos de soma quer fazer ?");
+        n = scan.nextInt();
+        Calc[] arrCalc = new Calc[n];
+        
+            for(x = 0; x < n; x++){
+                System.out.println("Value 1: ");
+                int a = scan.nextInt();
+                
+                System.out.println("Value 2: ");
+                int b = scan.nextInt();
+                
+                arrCalc[x] = new Calc();
+                arrCalc[x].setCalc(a, b);
+                
+                System.out.println("The Result is " + arrCalc[x].getCalcAB());
+            }
     }
 }
 
 class Calc{
-    private int x, y;
-
-        public void setX(int set_x, int set_y){
-            this.x = set_x;
-            this.y = set_y;
-        }
-
-        public int getX(){
-            return(x);
-        }
-
-        public int getY(){
-            return(y);
-        }
-
-}
-
-////////////////////////////////////////////////////////////////////////////////
-//Exemplo 3
-
-public class Main {
-    public static void main(String[] args){
-        String set_name;
-        double set_value;
-        Scanner scan = new Scanner(System.in);
-        Product[] vect = new Product[1]; //Criando um array de objeto
-
-        System.out.println("Name: ");
-        set_name = scan.nextLine();
-
-        System.out.println("Valor: ");
-        set_value = scan.nextDouble();
-
-        vect[0] = new Product(set_name, set_value); // Aqui o valor da primeira posiçao
-
-        System.out.println("Name: " +  vect[0].name ); //Recuperaçao do valor da variavel 'name'
-        System.out.println("Value: " + vect[0].value); //Recuperaçao do valor da variavel 'value'
+    
+    private int a, b;
+    
+    public void setCalc(int a, int b){
+        this.a = a;
+        this.b = b;
+    }
+    
+    public int getCalcAB(){
+        return(a + b);
     }
 }
 
-class Product{
-    String name;
-    double value;
 
-        public Product(String set_name, double set_value){
-            this.name = set_name;
-            this.value = set_value;
-        }
 
-}
 
 ////////////////////////////////////////////////////////////////////////////////
-//Exemplo 4
+//Exemplo 3
 
 package org.example;
 
