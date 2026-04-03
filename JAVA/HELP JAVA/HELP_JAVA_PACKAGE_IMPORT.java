@@ -16,7 +16,9 @@ import br.com.mycompany.packet1.test1;
 */
 
 //////////////////////////////////////////////////////////////////////
- // File test1
+//EXAMPLE 1
+
+// File test1
 
 /*
  *
@@ -24,6 +26,10 @@ import br.com.mycompany.packet1.test1;
  */
 
 package br.com.mycompany.packet1;
+
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 public class test1 {  
         public String a = "hello";
 }
@@ -48,91 +54,123 @@ public class test2 {
     
 }
 
+///////////////////////////////////////////////////////////////////////
+//EXAMPLE 2
 
-/////////////////////////////////////////////////////////////////////////////////
 
-/**
- *
- * @author hepta.brendo.p
- */
+//PACKET 1 arquivo principal onde a mesma vai importar uma classe externa Calc
 
-//File Name JavaTest.java
-
-package com.specter.javacourse;
-import com.specter.javacourse2.JavaTest2;
+package br.com.packet1;
+import br.com.packet2.Calc; //Aqui estou puxando uma classe que está em outro pacote
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-public class JavaTest {
-   public static void main(String args[]){
-       int rsTest2;
-       JavaTest2 objJavaTest2 = new JavaTest2();
-       rsTest2 = objJavaTest2.getResult();
-       
-       try{
-           JOptionPane.showMessageDialog(null, "O resultado final é " + rsTest2);
-           System.out.println("O resultado final é " + rsTest2);
-       }
-       catch(Exception e){
-           e.printStackTrace();
-       }
-   }
+/**
+ *
+ * @author hepta.brendo.p
+ */
+public class JsTest1618 {
+
+    public static void main(String[] args) {
+        int a, b;
+        JFrame frame = new JFrame();
+        frame.setAlwaysOnTop(true);
+        
+        a = Integer.parseInt(JOptionPane.showInputDialog(frame, "Value1: "));
+        b = Integer.parseInt(JOptionPane.showInputDialog(frame, "Value2: "));
+        
+        Calc objCalc = new Calc(a, b); //Aqui estou transformando a classe de outro package em objeto
+        
+        JOptionPane.showMessageDialog(frame, "The result is " + objCalc.CalcAB()); //Aqui utilizando esse objeto a partir da classe externa.
+        
+    }
 }
 
-//File Name JavaTest2.java
+//PACKET 2 Aqui é onde está a classe de onde vai ser importado
 
-
-package com.specter.javacourse2;
+package br.com.packet2;
 
 /**
  *
  * @author hepta.brendo.p
  */
-public class JavaTest2 {
-    public int getResult(){
-        int a, b, rs;
-        a   = 34;
-        b   = 11;
-        rs  = (a + b) * 2;
-        return(rs);
+public class Calc {
+    int a, b;
+    public Calc(int a, int b){
+        this.a = a;
+        this.b = b;
+    }
+    
+    public int CalcAB(){
+        int result = a + b;
+        return(result);
     }
 }
+
+/////////////////////////////////////////////////////////////////////////////////
+//EXAMPLE 3
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ */
+
+package br.com.packet1;
+import br.com.packet2.Calc;  //Aqui é onde eu vou pegar a classe Externa
+import java.awt.HeadlessException;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
+/**
+ *
+ * @author hepta.brendo.p
+ */
+public class JsTest1618 {
+
+    public static void main(String[] args) {
+        int a, b;
+        JFrame frame = new JFrame();
+        frame.setAlwaysOnTop(true);
+        
+        try{
+            a = Integer.parseInt(JOptionPane.showInputDialog(frame, "Value1: "));
+            b = Integer.parseInt(JOptionPane.showInputDialog(frame, "Value2: "));
+
+            Calc objCalc = new Calc();
+            objCalc.setCalc(a, b); //Aqui pegando a função set da classe externa
+
+            JOptionPane.showMessageDialog(frame, "The result is " + objCalc.CalcAB());
+        }catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(frame, "ATENÇÃO: DIGITE UM NÚMERO" + "\n" + "Error: " + e);
+            
+            
+        }finally{ //Aqui sempre executa
+            
+            frame.dispose(); //Utilizado pra fechar o Jframe 
+        }        
+    }
+}
+
+
+package br.com.packet2;
+
+/**
+ *
+ * @author hepta.brendo.p
+ */
+public class Calc {
+    int a, b;
+    public void setCalc(int a, int b){ //função que vai ser recuperada em outro arquivo
+        this.a = a;
+        this.b = b;
+    }
+    
+    public int CalcAB(){
+        int result = a + b;
+        return(result);
+    }
+}
+
 
 
 
 
 /////////////////////////////////////////////////////////////////////////////////
-
-package br.com.mycompany.packet1;
-
-/**
- *
- * @author hepta.brendo.p
- */
-public class test1 {  
-    
-    public static void hi(int a, int b){
-        int c = a;
-        int d = b;
-        int result = c + d;
-            System.out.println(result);
-    }
-}
-
-
-
-package br.com.mycompany.packet2;
-
-import br.com.mycompany.packet1.test1;
-
-/**
- *
- * @author hepta.brendo.p
- */
-public class test2 {
-    public static void main(String args[]){
-        test1 objT = new test1();
-        objT.hi(22,35);  
-    }
-    
-}
-////
