@@ -1,382 +1,471 @@
 
 import java.util.Scanner;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
-//CLASS AND OBJECT
-
-//Class Simple
-
-public class JavaTest1618 {
-    
-    public static void main(String args[]){
+public class JsTest1618 {
+    public static void main(String[] args){
         Test objTest = new Test();
-        objTest.myFunc();
+        objTest.myTest();
     }
 }
 
 class Test{
-    public void myFunc(){
-        try{
-            int x = 58;
-            System.out.println(x);
+
+    public void myTest(){
+        Scanner scan = new Scanner(System.in);
         
-        }catch(Exception e){
-            System.out.println("Error is: " + "\n" + e);
-        }
-        
-    }
-}
-
-##########################################################
-//CONSTRUCTOR 
-
-//import java.util.Scanner;
-public class javaTest {
-	
-	int x = 10;
-	
-	public static void main(String[] args) {
-		Scanner input = new Scanner(System.in);
-		
-		javaTest myobj = new javaTest();
-		System.out.println(myobj.x);
-	}
-}
-
-//or
-
-//import java.util.Scanner;
-package com.mycompany.test1;
-import java.util.Scanner;
-
-/**
- *
- * @author brandon
- */
-public class JavaTest1618 {
-    
-    private int x;  
-
-    /*
-    Public: Modificador default, pode ser acessado pela mesma classe, classes filhas e outras classes. 
-    Private: Pode ser acessado somente pela própria classe. 
-    Protected: Pode ser acessado pela mesma classe e classes filhas.
-    */
-    
-    
-    // Create a class constructor for the Main class
-    public JavaTest1618(int z){  
-        this.x = z;
-    }
-    
-    public int getX(){
-        return(x);
-    }
-    
-    public static void main(String args[]){
         try{
-            int a, b, result;
-            Scanner scan = new Scanner(System.in);
+            int x, y, result;
+            System.out.println("Value 1");
+            x = scan.nextInt();
             
-            System.out.println("Value 1: ");
-            a = scan.nextInt();
+            System.out.println("Value 2");
+            y = scan.nextInt();
             
-            System.out.println("Value 2: ");
-            b = scan.nextInt();
-            
-            // Create an object of class Main (This will call the constructor)
-            JavaTest1618 objTest1 = new JavaTest1618(a);
-            JavaTest1618 objTest2 = new JavaTest1618(b);
-            
-            result = objTest1.getX() + objTest2.getX();
+            result = x + y;
             System.out.println("The result is " + result);
         
         }catch(Exception e){
-        
-        System.out.println("Error: " + e);
-        
-        }
-    
-    }
-}
-
-
-//or
-
-package com.mycompany.test1;
-import java.util.Scanner;
-
-/**
- *
- * @author brandon
- */
-public class JavaTest1618 {
-    
-    public static void main(String args[]){
-        setValue objSet = new setValue();
-        objSet.myFunc();
-
-    }
-}
-
-class Dados{
-    private int a;
-    private int b;
-    
-    public Dados(int x){
-        this.a = x;
-    }
-    
-    public Dados(int y){
-        this.b = y;
-    }
-    
-    public int getA(){
-        
-        return(a);
-    }
-    
-    public int getB(){
-        
-        return(b);
-    }
-}
-
-class setValue{
-
-    public void myFunc(){
-        try{
-            Scanner scan = new Scanner(System.in);
-            int a, b ,total;
-            
-                System.out.println("Value 1: ");
-                a = scan.nextInt();
-
-                System.out.println("Value 2: ");
-                b = scan.nextInt();
-            
-                System.out.println(b);
-                
-                Dados objDados  = new Dados(a);
-                Dados objDados2 = new Dados(b);
-
-                total = objDados.getA() + objDados.getB();
-
-                System.out.println("The result is " + total);
-
-        }catch(Exception e){
-            System.out.println("Error is " + "\n" + e);
-
+            System.err.println("Somente números " + e);
         }
     }
 }
 
+//OR
 
-########################################################
+
+package br.com.packet1;
+
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author hepta.brendo.p
  */
+public class JsTest1618 {
+    public static void main(String[] args){
+        Test objTest = new Test();
+        objTest.myTest();
+    }
+}
 
-package com.specter.javacourse;
+class Test{
+
+    public void myTest(){
+        JFrame frame = new JFrame();
+        try{
+            int x, y, result;
+            
+            x = Integer.parseInt(JOptionPane.showInputDialog(frame, "Value1"));
+            y = Integer.parseInt(JOptionPane.showInputDialog(frame, "Value2"));
+                
+            result = x + y;
+            JOptionPane.showMessageDialog(frame, "The result is " + result);
+        
+        }catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(frame, "Somente números.. " + e);
+        }finally{
+            frame.dispose();
+        }
+    }
+}
+
+
+##########################################################
+//CONSTRUCTOR 
+
+
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ */
+
+package br.com.packet1;
+
 import java.util.Scanner;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-public class JavaTest {
-	public static void main(String[] args) {
-            GetValue objGet = new GetValue();
-            int total = objGet.setValue() + objGet.getValue();
-            System.out.println(total);
-	}
-}
-
-class Dados {
-	
-    public int a;
-    public int b;    
-}
-
-class SetValue {
-    public int setValue(){
+/**
+ *
+ * @author hepta.brendo.p
+ */
+public class JsTest1618 {
+    public static void main(String[] args){
+        int x, y, result;
         Scanner scan = new Scanner(System.in);
-        Dados objData = new Dados();
-        System.out.println("Values 1: ");
-        objData.a = scan.nextInt();
+        try{
+            
+            System.out.println("Value 1");
+            x = scan.nextInt();
+            
+            System.out.println("Value 2");
+            y = scan.nextInt();
+           
+            Test objTest = new Test(x, y);
+            
+            System.out.println("The result is " + objTest.getTest());
         
-        System.out.println("Values 2: ");
-        objData.b = scan.nextInt();
-        
-        int result = objData.a + objData.b;
-        return(result);
-    }
-
-}
-
-class GetValue extends SetValue{
-    public int getValue(){
-        int a = 50;
-        int b = 50;
-        int result = a + b;    
-        return(result);
+        }catch(Exception e){
+            System.err.println("Somente números " + e);
+        }
     }
 }
+
+class Test{
+
+    private final int a;  //Variável não pode ser alterada de forma nenhuma. Ela é imutável. 
+    private final int b;
+    private int result;
+    
+    public Test(int a, int b){
+        this.a = a;
+        this.b = b;
+    }
+    
+    public int getTest(){
+        result = this.a + this.b;
+        return(result);
+    }
+}
+
+
+//or
+
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ */
+
+package br.com.packet1;
+
+import java.util.Scanner;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
+/**
+ *
+ * @author hepta.brendo.p
+ */
+public class JsTest1618 {
+    public static void main(String[] args){
+        int x, y;
+        //Scanner scan = new Scanner(System.in);
+        JFrame frame = new JFrame();
+        try{
+            x = Integer.parseInt(JOptionPane.showInputDialog(frame, "Value1:"));
+            y = Integer.parseInt(JOptionPane.showInputDialog(frame, "Value2:"));
+           
+            Test objTest = new Test(x, y);
+            JOptionPane.showMessageDialog(frame, "The result is " + objTest.getTest());
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(frame, "Somente números... " + e);
+        }finally{
+            frame.dispose();
+        }
+    }
+}
+
+class Test{
+
+    private final int a;
+    private final int b;
+    private int result;
+    
+    public Test(int a, int b){
+        this.a = a;
+        this.b = b;
+    }
+    
+    public int getTest(){
+        result = this.a + this.b;
+        return(result);
+    }
+}
+
+///////////////////////////////////////////////////////////////
+
+//CONSTRUCTOR SOBRECARGA
+
+
+package br.com.packet1;
+
+import java.util.Scanner;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
+/**
+ *
+ * @author hepta.brendo.p
+ */
+public class JsTest1618 {
+    public static void main(String[] args){
+        int x, y, z, n;
+        Scanner scan = new Scanner(System.in);
+  
+        try{
+            
+            System.out.println("Digite quantos números para cálculo: 2 ou 3");
+            n = scan.nextInt();
+                if(n == 2){
+                    System.out.println("Value1: ");
+                    x = scan.nextInt();
+                    
+                    System.out.println("Value2: ");
+                    y = scan.nextInt();
+
+                    Test objTest = new Test(x, y);
+                    System.out.println("The result is " + objTest.getTestTwo());
+                    
+                }else if(n == 3){
+                    System.out.println("Value1: ");
+                    x = scan.nextInt();
+                    
+                    System.out.println("Value2: ");
+                    y = scan.nextInt();
+                    
+                    System.out.println("Value3: ");
+                    z = scan.nextInt();
+
+                    Test objTest = new Test(x, y);
+                    System.out.println("The result is " + objTest.getTestThree());
+                
+                }
+        }catch(Exception e){   
+            System.err.println("Somente números... " + e);
+        }
+    }
+}
+
+class Test{
+
+    private int a;
+    private int b;
+    private int c;
+    private int result;
+    
+    public Test(int a, int b){
+        this.a = a;
+        this.b = b;
+    }
+    
+    public Test(int a, int b, int c){
+        this.a = a;
+        this.b = b;
+        this.c = c;
+        
+    }
+    
+    public int getTestTwo(){
+        result = this.a + this.b;
+        return(result);
+    }
+    
+    public int getTestThree(){
+        result = this.a + this.b + this.c;
+        return(result);
+    }
+}
+
+
+
+//OR
+
+package br.com.packet1;
+
+import java.util.Scanner;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
+/**
+ *
+ * @author hepta.brendo.p
+ */
+public class JsTest1618 {
+    public static void main(String[] args){
+        int x, y, z, n;
+        //Scanner scan = new Scanner(System.in);
+        JFrame frame = new JFrame();
+        try{
+            
+            n = Integer.parseInt(JOptionPane.showInputDialog(frame, "Digite quantos números para cálculo: 2 ou 3"));
+                if(n == 2){
+                    x = Integer.parseInt(JOptionPane.showInputDialog(frame, "Value1:"));
+                    y = Integer.parseInt(JOptionPane.showInputDialog(frame, "Value2:"));
+
+                    Test objTest = new Test(x, y);
+                    JOptionPane.showMessageDialog(frame, "The result is " + objTest.getTestTwo()); 
+                    
+                }else if(n == 3){
+                    x = Integer.parseInt(JOptionPane.showInputDialog(frame, "Value1:"));
+                    y = Integer.parseInt(JOptionPane.showInputDialog(frame, "Value2:"));
+                    z = Integer.parseInt(JOptionPane.showInputDialog(frame, "Value3:"));
+
+                    Test objTest = new Test(x, y, z);
+                    JOptionPane.showMessageDialog(frame, "The result is " + objTest.getTestThree()); 
+                
+                }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(frame, "Somente números... " + e);
+        }finally{
+            frame.dispose();
+        }
+    }
+}
+
+class Test{
+
+    private int a;
+    private int b;
+    private int c;
+    private int result;
+    
+    public Test(int a, int b){
+        this.a = a;
+        this.b = b;
+    }
+    
+    public Test(int a, int b, int c){
+        this.a = a;
+        this.b = b;
+        this.c = c;
+        
+    }
+    
+    public int getTestTwo(){
+        result = this.a + this.b;
+        return(result);
+    }
+    
+    public int getTestThree(){
+        result = this.a + this.b + this.c;
+        return(result);
+    }
+}
+
 
 
 ########################################################
 
-/*Constructor Java */
+//Extends é uma forma de reaproveitar todo o código de uma classe em outra, sem precisar reescrever tudo, e sim aproveitar o que tem de melhor nela e usar para coisas a mais
+
+package br.com.packet1;
 
 import java.util.Scanner;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
-public class jsTest {
-	public static void main(String args[]) {
-		Scanner input = new Scanner(System.in);
-		int a;
-		int b;
-		int result;
-		
-		System.out.println("Value 1:");
-		a = input.nextInt();
-		
-		System.out.println("Value 2:");
-		b = input.nextInt();
-		
-		Test objTest = new Test(a, b); //Constructor
-        result = objTest.a + objTest.b;
-        System.out.println("The result is " + result);
-			
-	}
+/**
+ *
+ * @author hepta.brendo.p
+ */
+public class JsTest1618 {
+    public static void main(String[] args){
+        Test2 objTest2 = new Test2();
+        objTest2.setValue();
+        System.out.println("The result is " + objTest2.getTestExtends());
+    }
 }
 
-class Test {
-	int a;
-	int b;
-	
-		Test(int x, int z){
-			this.a = x;
-			this.b = z;
-		}
+class Test{
+
+    protected int a;
+    protected int b;
+    protected int result;
+    
+    public void setValue(){
+        Scanner scan = new Scanner(System.in);
+
+        System.out.println("Value1: ");
+        this.a = scan.nextInt();
+
+        System.out.println("Value2: ");
+        this.b = scan.nextInt();
+    }
+    
+    public int getTest(){
+        result = this.a + this.b;
+        return(result);
+    }
 }
+
+class Test2 extends Test{  // Eu estou utilizando toda a estrutura da classe pai Teste para que eu não precise repetir tudo que tem acima na classe pai.
+    public int getTestExtends(){
+        Scanner scan = new Scanner(System.in);
+        int z;  //Aqui eu estou adicionando uma entra a mais para usar o código pai de cima para calcular algo extra
+        
+        System.out.println("Qual o terceiro valor ?");
+        z = scan.nextInt();
+        
+        result = this.a + this.b + z;
+        return(result);
+    }
+}
+
 
 ########################################################
 //Polifirmismo
 
-package jsTest;
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ */
+
+package br.com.packet1;
+
 import java.util.Scanner;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
-public class jsTest {
-	public static void main(String args[]) {
-	    SetValue objSet = new SetValue();
-	    objSet.getValue();
-		
-	}
+/**
+ *
+ * @author hepta.brendo.p
+ */
+public class JsTest1618 {
+    public static void main(String[] args){
+        Test2 objTest2 = new Test2();
+        objTest2.setValue();
+        System.out.println("The result is " + objTest2.getTest());
+    }
 }
 
-class Dados {
-	private int a;
-	private int b;
-	
-		int setValue(int x) {  
-			this.a = x;
-			return(a);
-		}  //Poliformismo
-		
-		int setValue(int z) {
-			this.b = z;
-			return(b);
-		}
-	
+class Test{
+
+    protected int a;
+    protected int b;
+    protected int result;
+    
+    public void setValue(){
+        Scanner scan = new Scanner(System.in);
+
+        System.out.println("Value1: ");
+        this.a = scan.nextInt();
+
+        System.out.println("Value2: ");
+        this.b = scan.nextInt();
+    }
+    
+    public int getTest(){
+        result = this.a + this.b;
+        return(result);
+    }
 }
 
-class SetValue {
-	
-   int a; int b; int i; int l; int result;
-   
-       void getValue(){
-    	    Scanner input = new Scanner(System.in);
-			Dados objDados = new Dados();
-			i = input.nextInt();
-			l = input.nextInt();
-			a = objDados.setValue(i);
-			b = objDados.setValue(l);
-			result = a + b;
-			System.out.println(result);
-				
-			}
-	
-}
-
-
-########################################################
-//Class Extends
-
-package jsTest;
-import java.util.Scanner;
-
-public class jsTest {
-	public static void main(String args[]) {
-	    int result;
-		SetValue objSet = new SetValue();
-	    objSet.a = 23;
-	    objSet.b = 67;
-	    result = objSet.setValue();
-	    System.out.println(result);	
-	}
-}
-
-class Dados {
-	int a;
-	int b;
-}
-
-class SetValue extends Dados {
-	 int total;
-	 	int setValue() {
-	 		total = a + b;
-	 		return(total);
-	 	}
-	
-}
-
-//or
-
-package jsTest;
-import java.util.Scanner;
-
-public class jsTest {
-	public static void main(String args[]) {
-	    int a;
-	    int b;
-		int result;
-		SetValue objSet = new SetValue();
-	    a = objSet.setValue(45);
-	    b = objSet.setValue(88);
-	    result = a + b;
-	    
-	    System.out.println(result);	
-	}
-}
-
-class Dados {
-	int a;
-	int b;
-}
-
-class SetValue extends Dados {
-	 int total;
-	 	int setValue(int x) {
-	 		this.a = x;
-	 		return(a);
-	 	}
-	 	
-	 	int setValue(int z) {
-	 		this.b = z;
-	 		return(b);
-	 	}
-	
+class Test2 extends Test{  // Eu estou utilizando toda a estrutura da classe pai Teste para que eu não precise repetir tudo que tem acima na classe pai.
+    public int getTest(){  //Poliformismo, usar uma função que já existe e modificar ela sem ter que ficar repetindo a mesma coisa sempre. 
+        Scanner scan = new Scanner(System.in);
+        int z;  //Aqui eu estou adicionando uma entra a mais para usar o código pai de cima para calcular algo extra
+        
+        System.out.println("Qual o terceiro valor ?");
+        z = scan.nextInt();
+        
+        result = this.a + this.b + z;
+        return(result);
+    }
 }
 
 ########################################################
+
+
 
 
 
